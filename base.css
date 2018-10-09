@@ -1,0 +1,62 @@
+body{
+	margin: 0;
+}
+.header {
+	background-color: #00AEEF;
+}
+.info {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+}
+#store-name {
+	width: 25%;
+	color: white;
+	left: 30px;
+
+	font-family: Arial;
+	font-weight: 400;
+	font-size: 50px;
+}
+#store-name p {
+	display: inline;
+	color: #F2D800;
+}
+#user {
+	width: 15%;
+	left: 50%;
+	color: white;
+
+	font-family: Helvetica;
+	font-size: 24px;
+}
+#logout {
+	padding: 18px 22.5px;
+	background-color: #F26600;
+	left: 53.2%;
+}
+
+.menus {
+	font-size: 0;
+}
+.menu {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+
+	width: 33.23%;
+
+	font-family: Helvetica;
+	font-size: 30px;
+	text-align: center;
+	color: white;
+
+	background-color: #0094CC;
+}
+.menu p {
+	margin: 20px 0px;
+}
+#history {
+	border-left: 2px solid black;
+	border-right: 2px solid black;
+}
