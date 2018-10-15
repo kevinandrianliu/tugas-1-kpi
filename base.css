@@ -12,11 +12,11 @@ body{
 #store-name {
 	width: 25%;
 	color: white;
-	left: 30px;
+	left: 25px;
 
 	font-family: Arial;
 	font-weight: 400;
-	font-size: 50px;
+	font-size: 47px;
 }
 #store-name p {
 	display: inline;
@@ -24,16 +24,20 @@ body{
 }
 #user {
 	width: 15%;
-	left: 50%;
+	left: 52%;
 	color: white;
 
 	font-family: Helvetica;
-	font-size: 24px;
+	font-size: 23px;
 }
 #logout {
-	padding: 18px 22.5px;
+	padding: 13px 17.5px;
 	background-color: #F26600;
-	left: 53.2%;
+	left: 53.9%;
+}
+#logout_pic {
+	width: 40px;
+	height: 45px;
 }
 
 .menus {
@@ -47,16 +51,17 @@ body{
 	width: 33.23%;
 
 	font-family: Helvetica;
-	font-size: 30px;
+	font-size: 28px;
 	text-align: center;
 	color: white;
 
 	background-color: #0094CC;
 }
 .menu p {
-	margin: 20px 0px;
+	margin: 19px 0px;
 }
 #history {
 	border-left: 2px solid black;
 	border-right: 2px solid black;
 }
+

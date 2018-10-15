@@ -1,0 +1,78 @@
+.main_info {
+	background-color: #00374C;
+	height: 220px;
+}
+
+.prof_edit {
+	position: relative;
+	left: 97%;
+	top: 10px;
+	width: 32px;
+	height: 32px;
+}
+#pedit {
+	width: 32px;
+	height: 32px;
+}
+
+.prof_pic {
+	width: 120px;
+	height: 120px;
+	left: 45.46120058565154%;
+	top: -10px;
+	position: relative;
+	background-color: white;
+	overflow: hidden;
+	border-radius: 50%;
+	border: 6px solid #F2D800;
+}
+#pp {
+	width: 120px;
+	height: 120px;
+}
+
+.prof_name {
+	margin-top: -22px;
+	text-align: center;
+	color: white;
+	font-family: Arial;
+	font-size: 27px;
+}
+
+.profile_info {
+	font-family: Arial;
+}
+.profile_info p {
+	width: 200px;
+	position: relative;
+	font-size: 25px;
+	font-weight: 600;
+	color: #F26A08;
+	top: 10px;
+	left: 33%;
+}
+
+table {
+	margin-left: 35%;
+}
+th, td {
+	text-align: left;
+	font-family: Arial;
+	font-weight: 200;
+	padding: 0 0 20px 0;
+}
+
+.info_pic {
+	width: 25px;
+}
+.info_type {
+	width: 135px;
+}
+.info_data {
+	width: 500px;
+}
+
+#pic {
+	width: 15px;
+	height: 15px;
+}
