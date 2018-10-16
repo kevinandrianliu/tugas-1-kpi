@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>???</title>
+		<link rel="stylesheet" type="text/css" href="./base.css">
+		<link rel="stylesheet" type="text/css" href="./edit_profile.css">
+	</head>
+	<body>
+		<div>
+			<div class="header">
+				<div class="info" id="store-name">
+					<p>Pro</p>
+					- Book
+				</div>
+				<div class="info" id="user">
+					<p><u>Hi, tayotayo</u></p>
+				</div>
+				<div class="info" id="logout">
+					<img src="./icon/io.png" id="logout_pic">
+				</div>
+			</div>
+			<div class="menus">
+				<!-- Warna page yang sedang dipilih = #F26600-->
+				<div class="menu" id="browse">
+					<p>Browse</p>
+				</div>
+				<div class="menu" id="history">
+					<p>History</p>
+				</div>
+				<div class="menu" id="profile">
+					<p>Profile</p>
+				</div>
+			</div>
+		</div>
+		<div class="edit_profile">
+			<p>Edit Profile</p>
+			<form>
+				<table>
+					<tr class="pp_tr">
+						<td>
+							<div class="pp_container">
+								<img src="./icon/pp.png" id="pp">
+							</div>
+						</td>
+						<td class="pp_td">
+							<p>Update profile picture</p>
+							<input type="text" name="pic_path" class="pic_path">
+							<button class="buttons" id="browse_butt">Browse ...</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Name
+						</td>
+						<td>
+							<input type="text" name="name" class="name" value="John Wick">
+						</td>
+					</tr>
+					<tr>
+						<td class="add_text">
+							Address
+						</td>
+						<td>
+							<textarea name="address" class="address">120 Garage Street, Unit B, Korea</textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Phone Number
+						</td>
+						<td>
+							<input type="text" name="phone" class="phone" value="081234567890">
+						</td>
+					</tr>
+					<tr>
+						<td class="td_back_butt">
+							<button class="buttons" id="back_butt">Back</button>
+						</td>
+						<td class="td_save_butt">
+							<button class="buttons" id="save_butt">Save</button>
+						</td>
+					</tr>
+				</table>
+			</form>
+	</body>
+</html>
