@@ -32,11 +32,30 @@
 			</div>
 		</div>
 		<div>
-			<div class = "form">
-                <p>Search book</p>
-                <input class = "form" id="forminputter"> </input>
-                <button class="form" id="formbutton">Search</button>
-            </div>
+			<div class = "search">
+				<div id = "searchbar">
+					<h1>Search book</h1>
+					<input class = "form" id="forminputter">
+					<button class="form" id="formbutton">Search</button>
+				</div>
+				<div id="result">
+					<?php
+						echo "<h2>Hello World!</h2>";
+
+						$servername = "localhost";
+						$username = "root";
+						# $password = "password";
+
+						$conn = new mysqli($servername, $username);
+
+						if ($conn->connect_error) {
+							die("Connection failed: " . $conn->connect_error);
+						}
+
+						echo "Connected sucessfully";
+					?>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
