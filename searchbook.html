@@ -35,25 +35,10 @@
 			<div class = "search">
 				<div id = "searchbar">
 					<h1>Search book</h1>
-					<input class = "form" id="forminputter">
-					<button class="form" id="formbutton">Search</button>
-				</div>
-				<div id="result">
-					<?php
-						echo "<h2>Hello World!</h2>";
-
-						$servername = "localhost";
-						$username = "root";
-						# $password = "password";
-
-						$conn = new mysqli($servername, $username);
-
-						if ($conn->connect_error) {
-							die("Connection failed: " . $conn->connect_error);
-						}
-
-						echo "Connected sucessfully";
-					?>
+					<form action="searchresult.php" method="get">
+						<input id="forminputter" type="text" name="judul" required>
+						<button id="formbutton">Search</button>
+					</form>
 				</div>
 			</div>
 		</div>
