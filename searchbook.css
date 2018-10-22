@@ -1,5 +1,6 @@
 body{
 	margin: 0;
+	overflow-x: hidden;
 }
 .header {
 	background-color: #00AEEF;
@@ -60,35 +61,75 @@ body{
 	border-left: 2px solid black;
 	border-right: 2px solid black;
 }
-.form {
-    margin: auto;
-    width: 92%;
-    font-family: Cambria;
-    font-size: 25px;
+
+.pic {
+	width: 200px;
+	height: 200px;
+	border: 2px gray solid;
+	text-align: center;
+	float: left;
+	margin-right: 30px;
 }
-.form p {
-    font-size: 60px;
+
+.search {
+    margin: auto;
+	width: 92%;
+    font-family: Cambria;
+	font-size: 25px;
+}
+.search h1 {
+	font-weight: normal;
     color: #F26600;
     text-align: left;
     margin: 30px 0px;
 }
+.search h3 {
+	font-weight: normal;
+    color: #F26600;
+    text-align: left;
+    margin: 0px 0px;
+}
+.search h4 {
+	font-weight: normal;
+    color: gray;
+    text-align: left;
+    margin: 5px 0px;
+}
+.search p{
+	margin: 0px;
+}
+#searchbar {
+	overflow: auto;
+}
+.result {
+	margin: 20px 0px;
+}
+.persection {
+	border: 3px solid #00AEEF;
+	padding: 30px 30px;
+	margin: 20px 0px;
+	clear: both;
+	overflow: auto;
+}
 #forminputter {
+	font-family: Cambria;
+	font-size: 25px;
     border-radius: 5px;
     border-color: darkgrey;
     border-style: solid;
-    width: 100%;
+    width: 99.5%;
     height: 40px;
 }
-#formbutton {
+button {
     background-color: #00AEEF;
     border-radius: 5px;
     border-style: none;
 
-    margin: 20px 0px;
+    margin: 20px 0px 0px 0px;
     width: 150px;
     height: 40px;
 
     font-size: 25px;
     color: white;
-    float: right;
+	float: right;
 }
