@@ -33,21 +33,53 @@
 		</div>
 		<div>
 			<div class = "search">
-			<h1>Search Result</h1>
-				<div class = "result">
+				<div class = "inside">
 					<?php
 						$servername = "localhost";
 						$username = "root";
 						# $password = "password";
 
 						$conn = new mysqli($servername, $username, "", "wbd01");
-
 						if ($conn->connect_error) {
 							die("Connection failed: " . $conn->connect_error);
 						}
 
+						$id = $_GET["id"];
+						$query = "SELECT * FROM book WHERE id=$id";
+
+						$result = $conn->query($query);
+
+						if ($result) {
+							$row = $result->fetch_assoc();
+							echo "<div class = 'side' >";
+							echo "<div class = 'pic2'>";
+							echo '<img src="data:image/jpeg;base64,' . base64_encode($row["picture"]) . '" height="235px" max-width="235px" />';
+							echo "</div>";
+
+							echo "<div class='rating'>";
+
+							$star = (int) $row["rating"];
+							$x = 1;
+							while ($x <= $star) {
+								echo '<img src="./icon/fullstaricon.png" width="30px" height="29px"/>';
+								$x += 1;
+							}
+							while ($x <= 5) {
+								echo '<img src="./icon/nullstaricon.png" width="30px" height="29px"/>';
+								$x += 1;
+							}
+							echo "</div>";
+							echo "</div>";
+							echo "<h1>" . $row["title"] . "</h1>";
+							echo "<h4>" . $row["author"] . "</h4>";
+							echo "<p>" . $row["descrip"] . "</p>";
+						}
+
 						$conn->close();
 					?>
+				</div>
+				<div class = "order">
+
 				</div>
 			</div>
 		</div>
