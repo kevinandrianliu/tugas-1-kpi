@@ -70,7 +70,6 @@ body{
 	float: left;
 	margin-right: 30px;
 }
-
 .search {
     margin: auto;
 	width: 92%;
@@ -81,7 +80,7 @@ body{
 	font-weight: normal;
     color: #F26600;
     text-align: left;
-    margin: 30px 0px;
+    margin: 30px 0px 10px 0px;
 }
 .search h3 {
 	font-weight: normal;
@@ -98,14 +97,13 @@ body{
 .search p{
 	margin: 0px;
 }
-#searchbar {
+.searchbar {
 	overflow: auto;
 }
 .result {
 	margin: 20px 0px;
 }
 .persection {
-	border: 3px solid #00AEEF;
 	padding: 30px 30px;
 	margin: 20px 0px;
 	clear: both;
@@ -118,7 +116,8 @@ body{
     border-color: darkgrey;
     border-style: solid;
     width: 99.5%;
-    height: 40px;
+	height: 40px;
+	margin-top: 20px;
 }
 button {
     background-color: #00AEEF;
@@ -132,4 +131,29 @@ button {
     font-size: 25px;
     color: white;
 	float: right;
+}
+.inside {
+	padding-top: 30px;
+	clear: right;
+	overflow: auto;
+}
+.side  {
+	width:250px;
+	height: 350px;
+	margin-top: 30px;
+	margin-left: 30px;
+	text-align: center;
+	float: right;
+}
+.pic2 {
+	width: 240px;
+	height: 240px;
+	border: 2px gray solid;
+	text-align: center;
+}
+.rating {
+	width: 240px;
+	height: 50px;
+	text-align: center;
+	margin-top: 20px;
 }
