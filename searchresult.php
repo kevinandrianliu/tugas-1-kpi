@@ -48,26 +48,26 @@
 
 						$titlequer = "%" . $_GET["judul"] . "%";
 						
-						$query = "SELECT title, author, descrip, picture FROM book WHERE title LIKE '$titlequer'";
+						$query = "SELECT id, title, author, descrip, picture FROM book WHERE title LIKE '$titlequer'";
 						$result = $conn->query($query);
 
 						if ($result) {
+						echo "<p>Found " . $result->num_rows . " results.</p>";
 							while($row = $result->fetch_assoc()) {
 								echo "<div class = 'persection'>";
+								echo "<div class='pic' >";
+								echo '<img src="data:image/jpeg;base64,' . base64_encode($row["picture"]) . '" height="200px" max-width="200px" />';
+								echo "</div>";
 								echo "<h3>" . $row["title"] . "</h3>";
 								echo "<h4>" . $row["author"] . "</h4>";
 								echo "<p>" . $row["descrip"] . "</p>";
+								echo "<button>Detail</button>";
 								echo "</div>";
 							}
 						}
 						
 						$conn->close();
 					?>
-					<div class = "persection">
-						<h3>Baaaa</h3>
-						<h4>NALSKSJ</h4>
-						<p>asdhjhjkfhkjshklfjh sldflkjalkfjlkdsjklf dhslfhj</p>
-					</div>
 				</div>
 			</div>
 		</div>
