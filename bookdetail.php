@@ -1,8 +1,45 @@
 <!DOCTYPE HTML>
+<?php
+	# Cookies - EXPERIMENTAL ONLY
+	# REMOVE LATER
+	$idbook = $_GET["id"];
+	setcookie("user", "cirno_strongest");
+	setcookie("bookid", $idbook);
+?>
 <html>
 	<head>
 		<title>Pro Book - Search Book</title>
 		<link rel="stylesheet" type="text/css" href="./searchbook.css">
+		<script>
+
+			function getCookie(cname) {
+				var name = cname + "=";
+				var decodedCookie = decodeURIComponent(document.cookie);
+				var ca = decodedCookie.split(';');
+				for(var i = 0; i <ca.length; i++) {
+					var c = ca[i];
+					while (c.charAt(0) == ' ') {
+						c = c.substring(1);
+					}
+					if (c.indexOf(name) == 0) {
+						return c.substring(name.length, c.length);
+					}
+				}
+				return "";
+			}
+
+			function inputorder() {
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						alert(this.responseText);
+					}
+				}
+				var x = document.getElementById("quantity").value;
+				xhttp.open("GET", "inputorder.php?usr=" + getCookie("user") + "&id=" + getCookie("bookid") + "&q=1", true);
+				xhttp.send();
+			}
+		</script>
 	</head>
 	<body>
 		<div>
@@ -39,7 +76,7 @@
 						$username = "root";
 						# $password = "password";
 
-						$conn = new mysqli($servername, $username, "", "wbd01");
+						$conn = new mysqli($servername, $username, "", "wbd_schema");
 						if ($conn->connect_error) {
 							die("Connection failed: " . $conn->connect_error);
 						}
@@ -53,12 +90,17 @@
 							$row = $result->fetch_assoc();
 							echo "<div class = 'side' >";
 							echo "<div class = 'pic2'>";
-							echo '<img src="data:image/jpeg;base64,' . base64_encode($row["picture"]) . '" height="235px" max-width="235px" />';
+							echo '<img src="' . $row["book_pic"]. '" height="235px" max-width="235px" />';
 							echo "</div>";
 
 							echo "<div class='rating'>";
 
-							$star = (int) $row["rating"];
+							$query = "SELECT AVG(rating) FROM rating_review WHERE book_id=$id";
+							$result = $conn->query($query);
+
+							$ratrow = $result->fetch_assoc();
+							$star = (int) $ratrow["AVG(rating)"];
+							
 							$x = 1;
 							while ($x <= $star) {
 								echo '<img src="./icon/fullstaricon.png" width="30px" height="29px"/>';
@@ -72,14 +114,31 @@
 							echo "</div>";
 							echo "<h1>" . $row["title"] . "</h1>";
 							echo "<h4>" . $row["author"] . "</h4>";
-							echo "<p>" . $row["descrip"] . "</p>";
+							echo "<p>" . $row["description"] . "</p>";
 						}
 
 						$conn->close();
 					?>
 				</div>
 				<div class = "order">
-
+					<h2>Order</h2>
+						Order:
+						<select id="quantity">
+							<option value="1" selected>1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+						<button onclick="inputorder()">Order</button>
+				</div>
+				<div id = "comment">
+					<p>blablabla</p>
 				</div>
 			</div>
 		</div>
