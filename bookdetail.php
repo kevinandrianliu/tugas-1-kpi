@@ -10,38 +10,15 @@
 	<head>
 		<title>Pro Book - Search Book</title>
 		<link rel="stylesheet" type="text/css" href="./searchbook.css">
-		<script>
-
-			function getCookie(cname) {
-				var name = cname + "=";
-				var decodedCookie = decodeURIComponent(document.cookie);
-				var ca = decodedCookie.split(';');
-				for(var i = 0; i <ca.length; i++) {
-					var c = ca[i];
-					while (c.charAt(0) == ' ') {
-						c = c.substring(1);
-					}
-					if (c.indexOf(name) == 0) {
-						return c.substring(name.length, c.length);
-					}
-				}
-				return "";
-			}
-
-			function inputorder() {
-				var xhttp = new XMLHttpRequest();
-				xhttp.onreadystatechange = function() {
-					if (this.readyState == 4 && this.status == 200) {
-						alert(this.responseText);
-					}
-				}
-				var x = document.getElementById("quantity").value;
-				xhttp.open("GET", "inputorder.php?usr=" + getCookie("user") + "&id=" + getCookie("bookid") + "&q=1", true);
-				xhttp.send();
-			}
-		</script>
+		<script src="inputtransaction.js"></script>
 	</head>
 	<body>
+		<div id="dialogbox">
+			<div id="dialogclose"></div>
+			<img src="./icon/check.png"/>
+			<div id="dialogcontent"></div>
+		</div>
+		<div id="dialogoverlay"></div>
 		<div>
 			<div class="header">
 				<div class="info" id="store-name">
@@ -103,11 +80,11 @@
 							
 							$x = 1;
 							while ($x <= $star) {
-								echo '<img src="./icon/fullstaricon.png" width="30px" height="29px"/>';
+								echo '<img class="rate" src="./icon/fullstaricon.png"/>';
 								$x += 1;
 							}
 							while ($x <= 5) {
-								echo '<img src="./icon/nullstaricon.png" width="30px" height="29px"/>';
+								echo '<img class="rate" src="./icon/nullstaricon.png"/>';
 								$x += 1;
 							}
 							echo "</div>";
@@ -137,8 +114,9 @@
 						</select>
 						<button onclick="inputorder()">Order</button>
 				</div>
-				<div id = "comment">
-					<p>blablabla</p>
+				<div class = "review">
+					<h2>Review</h2>
+					
 				</div>
 			</div>
 		</div>
