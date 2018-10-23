@@ -85,6 +85,7 @@ body{
 .search h2 {
 	color: midnightblue;
 	font-weight: normal;
+	margin: 0px;
 }
 .search h3 {
 	font-weight: normal;
@@ -143,7 +144,7 @@ button {
 }
 .side  {
 	width:250px;
-	height: 350px;
+	height: 300px;
 	margin-top: 30px;
 	margin-left: 30px;
 	text-align: center;
@@ -157,12 +158,50 @@ button {
 }
 .rating {
 	width: 240px;
-	height: 50px;
+	height: 40px;
 	text-align: center;
-	margin-top: 20px;
+	margin-top: 10px;
+}
+.rating .rate {
+	width: 30px;
+	height: 29px;
 }
 .order {
-	padding: 20px 0px;
+	padding-bottom: 20px;
 	margin: 20px 0px;
 	overflow: auto;
+}
+#dialogoverlay {
+	display: none;
+	opacity: .7;
+	background: gray;
+	position: fixed;
+	width: 100%;
+	top: 0px;
+	left: 0px;
+	z-index: 10;
+}
+#dialogbox {
+	display: none;
+	position: fixed;
+	background: white;
+	border-radius: 3px;
+	width: 500px;
+	z-index: 11;
+	padding: 10px 20px;
+	clear: left;
+	font-family: Cambria;
+}
+#dialogbox img {
+	float: left;
+	width: 80px;
+	height: 80px;
+	margin-top: 10px;
+	margin-right: 20px;
+}
+#dialogclose {
+	float: right;
+	font-weight: bold;
+	font-size: 50px;
+	cursor: pointer;
 }
