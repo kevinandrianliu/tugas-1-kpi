@@ -75,12 +75,16 @@ body{
 	width: 92%;
     font-family: Cambria;
 	font-size: 25px;
+	text-align: left;
 }
 .search h1 {
+	color: #F26600;
 	font-weight: normal;
-    color: #F26600;
-    text-align: left;
     margin: 30px 0px 10px 0px;
+}
+.search h2 {
+	color: midnightblue;
+	font-weight: normal;
 }
 .search h3 {
 	font-weight: normal;
@@ -156,4 +160,9 @@ button {
 	height: 50px;
 	text-align: center;
 	margin-top: 20px;
+}
+.order {
+	padding: 20px 0px;
+	margin: 20px 0px;
+	overflow: auto;
 }
