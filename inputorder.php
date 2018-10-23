@@ -15,7 +15,11 @@
     }
 
     if ($conn->query($query) === TRUE) {
-        echo "New record created successfully";
+
+        $query2 = "SELECT LAST_INSERT_ID()";
+        $result = $conn->query($query2);
+        $id = $result->fetch_assoc();
+        echo "<h4>Pemesanan Berhasil!</h4> <p>Nomor transaksi:" . $id["LAST_INSERT_ID()"] . "</p>";
     } else {
         echo "Error: " . $query . "<br>" . mysqli_error($conn);
     }
