@@ -61,7 +61,7 @@
 								echo "<h3>" . $row["title"] . "</h3>";
 								echo "<h4>" . $row["author"] . "</h4>";
 								echo "<p>" . $row["descrip"] . "</p>";
-								echo "<button>Detail</button>";
+								echo "<button onclick='location.href=\"bookdetail.php?id=" . $row["id"] . "\"'>Detail</button>";
 								echo "</div>";
 							}
 						}
