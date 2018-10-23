@@ -8,7 +8,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>???</title>
+		<title>Edit Profile - <?php echo $uname?></title>
 		<link rel="stylesheet" type="text/css" href="./base.css">
 		<link rel="stylesheet" type="text/css" href="./edit_profile.css">
 		<script src="./edit_profile.js"></script>
@@ -82,6 +82,9 @@
 						<td>
 							<input type="text" name="name" id="name" value=<?php echo "\"$name\""; ?>>
 						</td>
+						<td>
+							<div class="errors" id="name_error"></div>
+						</td>
 					</tr>
 					<tr>
 						<td class="add_text">
@@ -90,6 +93,9 @@
 						<td>
 							<textarea name="address" id="address"><?php echo $addr; ?></textarea>
 						</td>
+						<td>
+							<div class="errors" id="addr_error"></div>
+						</td>
 					</tr>
 					<tr>
 						<td>
@@ -97,6 +103,9 @@
 						</td>
 						<td>
 							<input type="text" name="phone" id="phone" value=<?php echo $phone; ?>>
+						</td>
+						<td>
+							<div class="errors" id="phone_error"></div>
 						</td>
 					</tr>
 					<tr>

@@ -14,20 +14,30 @@ function validate(){
 	var phone = document.getElementById("phone").value;
 	var form = document.getElementById("save_butt");
 
-	console.log(name);
-	console.log(addr);
-	console.log(phone);
-	console.log(name.length);
-	console.log(addr.length);
-	console.log(phone.length);
+	var legal = true;
 
-	var prevDef = function(e){
-		e.preventDefault();
-	};
+	if (name.length == 0){
+		document.getElementById("name_error").innerHTML = "*field harus diisi.";
+		legal = false;
+	} else if (name.length > 20){
+		document.getElementById("name_error").innerHTML = "*panjang nama maksimal adalah 20.";
+		legal = false;
+	}
 
-	if ((name.length == 0) || (addr.length == 0) || (phone.length == 0)){
-		alert("NO");
-	} else {
+	if (addr.length == 0){
+		document.getElementById("addr_error").innerHTML = "*field harus diisi.";
+		legal = false;
+	}
+
+	if (phone.length == 0){
+		document.getElementById("phone_error").innerHTML = "*field harus diisi.";
+		legal = false;
+	} else if ((phone.length < 9) || (phone.length > 12)){
+		document.getElementById("phone_error").innerHTML = "*panjang no. telepon harus diantara 9 dan 12.";
+		legal = false;
+	}
+
+	if (legal){
 		document.edit_form.submit();
 	}
 };

@@ -1,3 +1,7 @@
+#profile {
+	background-color: #F26600;
+}
+
 .edit_profile {
 	position: relative;
 	left: 3%;
@@ -26,6 +30,11 @@
 #pp {
 	width: 110px;
 	height: 110px;
+}
+
+.errors {
+	color: red;
+	font-size: 11px;
 }
 
 table {
