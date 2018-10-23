@@ -40,7 +40,7 @@
 						$username = "root";
 						# $password = "password";
 
-						$conn = new mysqli($servername, $username, "", "wbd01");
+						$conn = new mysqli($servername, $username, "", "wbd_schema");
 
 						if ($conn->connect_error) {
 							die("Connection failed: " . $conn->connect_error);
@@ -48,7 +48,7 @@
 
 						$titlequer = "%" . $_GET["judul"] . "%";
 						
-						$query = "SELECT id, title, author, descrip, picture FROM book WHERE title LIKE '$titlequer'";
+						$query = "SELECT id, title, author, description, book_pic FROM book WHERE title LIKE '$titlequer'";
 						$result = $conn->query($query);
 
 						if ($result) {
@@ -56,11 +56,11 @@
 							while($row = $result->fetch_assoc()) {
 								echo "<div class = 'persection'>";
 								echo "<div class='pic' >";
-								echo '<img src="data:image/jpeg;base64,' . base64_encode($row["picture"]) . '" height="200px" max-width="200px" />';
+								echo '<img src="' . $row["book_pic"] . '" height="200px" max-width="200px" />';
 								echo "</div>";
 								echo "<h3>" . $row["title"] . "</h3>";
 								echo "<h4>" . $row["author"] . "</h4>";
-								echo "<p>" . $row["descrip"] . "</p>";
+								echo "<p>" . $row["description"] . "</p>";
 								echo "<button onclick='location.href=\"bookdetail.php?id=" . $row["id"] . "\"'>Detail</button>";
 								echo "</div>";
 							}
