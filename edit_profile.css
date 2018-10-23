@@ -40,7 +40,7 @@ td p {
 .buttons {
 	text-decoration: none;
 }
-.pic_path {
+#pic_path {
 	height: 20px;
 	width: 250px;
 }
@@ -61,7 +61,7 @@ textarea {
 	font-size: 13px;
 }
 
-.name {
+#name {
 	height: 20px;
 	width: 320px;
 }
@@ -69,12 +69,12 @@ textarea {
 	vertical-align: top;
 	width: 130px;
 }
-.address {
+#address {
 	resize: none;
 	width: 318px;
 	height: 100px;
 }
-.phone {
+#phone {
 	height: 20px;
 	width: 320px;
 }
