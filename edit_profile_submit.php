@@ -1,23 +1,24 @@
 <?php
-	$uname = $_COOKIE["username"];
-	$name = $_POST["name"];
-	$addr = $_POST["address"];
-	$phone = $_POST["phone"];
+	//check if the cookie has expired or a user is logged in
+	if (!(isset($_COOKIE["username"])) || $_COOKIE["username"] == ""){
+		header("Location: index.php");
+	}
+	if ((isset($_POST["name"])) && (isset($_POST["address"])) && (isset($_POST["name"]))){	//check if the user accessed the page right, via form submit
+		$uname = $_COOKIE["username"];
+		$name = $_POST["name"];
+		$addr = $_POST["address"];
+		$phone = $_POST["phone"];
 
-	$valid_files = array("jpg","jpeg","png","gif","bmp");
+		$dbserver = '127.0.0.1';
+		$dbuser = 'root';
+		$dbpass = '';
+		$conn = mysqli_connect($dbserver,$dbuser,$dbpass);
 
-	$dbserver = '127.0.0.1';
-	$dbuser = 'root';
-	$dbpass = '';
-	$conn = mysqli_connect($dbserver,$dbuser,$dbpass);
+		if ($_FILES["pic_path"]["name"] !== ""){
+			$file_tmpname = $_FILES["pic_path"]["tmp_name"];
+			$file_name = $_FILES["pic_path"]["name"];
+			$file_dir = getcwd()."\\pp\\".$file_name;
 
-	if ($_FILES["pic_path"]["name"] !== ""){
-		$file_tmpname = $_FILES["pic_path"]["tmp_name"];
-		$file_name = $_FILES["pic_path"]["name"];
-		$file_ext = pathinfo($file_name,PATHINFO_EXTENSION);
-		$file_dir = getcwd()."\\pp\\".$file_name;
-
-		if (in_array($file_ext, $valid_files)){
 			move_uploaded_file($file_tmpname,$file_dir);
 
 			if(mysqli_connect_error()) {
@@ -38,24 +39,27 @@
 
 			mysqli_close($conn);
 		}
-	}
 
-	$conn = mysqli_connect($dbserver,$dbuser,$dbpass);
+		$conn = mysqli_connect($dbserver,$dbuser,$dbpass);
 
-	if(mysqli_connect_error()) {
-	   	die('Could not connect: ' . mysqli_connect_error());
-	}
+		if(mysqli_connect_error()) {
+		   	die('Could not connect: ' . mysqli_connect_error());
+		}
 
-	mysqli_select_db($conn,"wbd_user_schema");
-	if ($_FILES["pic_path"]["name"] !== ""){
-		$query = "UPDATE user SET name='$name',address='$addr',phone_num='$phone',display_pic='./pp/$file_name' WHERE username='$uname'";
-	} else {
-		$query = "UPDATE user SET name='$name',address='$addr',phone_num='$phone' WHERE username='$uname'";
-	}
+		mysqli_select_db($conn,"wbd_user_schema");
+		if ($_FILES["pic_path"]["name"] !== ""){
+			$query = "UPDATE user SET name='$name',address='$addr',phone_num='$phone',display_pic='./pp/$file_name' WHERE username='$uname'";
+		} else {
+			$query = "UPDATE user SET name='$name',address='$addr',phone_num='$phone' WHERE username='$uname'";
+		}
 
-	if (!(mysqli_query($conn,$query))){
-		echo mysqli_error($conn);
-	}
+		if (!(mysqli_query($conn,$query))){
+			echo mysqli_error($conn);
+		}
 		mysqli_close($conn);
-	header("Location: profile.php");
+
+		header("Location: profile.php");
+	} else {
+		header("HTTP/1.1 403 Forbidden");
+	}
 ?>

@@ -12,10 +12,19 @@ function validate(){
 	var name = document.getElementById("name").value;
 	var addr = document.getElementById("address").value;
 	var phone = document.getElementById("phone").value;
+	var dp = document.getElementById("pic_path").value;
 	var form = document.getElementById("save_butt");
-
 	var legal = true;
 
+	if (dp.length > 0){
+		var splitted_file = dp.split(".");
+		var legal_file = ["jpg","jpeg","png","gif"];
+
+		if ((legal_file.indexOf((splitted_file[splitted_file.length-1]).toLowerCase())) == -1){
+			legal = false;
+			document.getElementById("pic_error").innerHTML = "*Hanya .jpg, .png, dan .gif yang diperbolehkan.";
+		}
+	}
 	if (name.length == 0){
 		document.getElementById("name_error").innerHTML = "*field harus diisi.";
 		legal = false;

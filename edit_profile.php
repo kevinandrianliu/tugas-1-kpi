@@ -1,8 +1,9 @@
 <?php
+	//check if cookie is set and a user is already in
 	if (!(isset($_COOKIE["username"])) || $_COOKIE["username"] == ""){
-		header("Location: index.php");
+		header("Location: index.php");	//if not, redirect to login page
 	} else {
-		$uname = $_COOKIE["username"];
+		$uname = $_COOKIE["username"];	//else, retrieve the cookie
 	}
 ?>
 <!DOCTYPE HTML>
@@ -72,6 +73,7 @@
 							<p>Update profile picture</p>
 							<input type="text" id="pic_path">
 							<input type="button" onclick="browse_file()" class="buttons" id="browse_butt" value="Browse ...">
+							<div class="errors" id="pic_error"></div>
 							<input type="file" name="pic_path" id="file-dir" oninput="pass_file_dir()" hidden>
 						</td>
 					</tr>
