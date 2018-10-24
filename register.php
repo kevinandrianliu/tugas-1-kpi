@@ -165,7 +165,7 @@
 		}
 	?>
 		<div>
-			<img class = "backgroundimage" src = "loginregister.png" alt="Login Register Background">
+			<img class = "backgroundimage" src = "./loginregister.png" alt="Login Register Background">
 			<h2 class = "headerregister">REGISTER</h2>
 			<form action="register.php" method = "post" class ="register">
 				<table>
