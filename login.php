@@ -55,7 +55,7 @@
 		}
 	?>
 		<div>
-			<img class = "backgroundimage" src = "loginregister.png" alt="Login Register Background">
+			<img class = "backgroundimage" src = "./loginregister.png" alt="Login Register Background">
 			<h2 class = "headerlogin">LOGIN</h2>
 			<form action = "login.php" method = "post" class = "login">
 				<table>
