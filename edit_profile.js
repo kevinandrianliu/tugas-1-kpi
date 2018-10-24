@@ -46,6 +46,12 @@ function validate(){
 		legal = false;
 	}
 
+	var phone_test = 999999999999 - phone;
+	if (isNaN(phone_test)){
+		document.getElementById("phone_error").innerHTML = "*no. telelon harus berupa angka.";
+		legal = false;
+	}
+
 	if (legal){
 		document.edit_form.submit();
 	}
