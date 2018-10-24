@@ -25,7 +25,7 @@
 				if(mysqli_connect_error()) {
 				   	die('Could not connect: ' . mysqli_connect_error());
 				}
-				mysqli_select_db($conn, "wbd_user_schema");
+				mysqli_select_db($conn, "wbd_schema");
 				if ($stmt = mysqli_prepare($conn,"SELECT name,email,address,phone_num,display_pic FROM user WHERE username = \"".$uname."\"")) {
 					mysqli_stmt_execute($stmt);
 
