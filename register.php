@@ -16,10 +16,10 @@
 						//consequence 
 						if(xmlhttp.responseText == "valid"){
 							if(element == 'username'){
-								document.getElementById("uname").innerHTML = '<img src="orange_tick.png" class = "tick" alt = "picture">';
+								document.getElementById("uname").innerHTML = '<img src="./orange_tick.png" class = "tick" alt = "picture">';
 							}
 							else{
-								document.getElementById("mail").innerHTML = '<img src="orange_tick.png" class = "tick" alt = "picture">';
+								document.getElementById("mail").innerHTML = '<img src="./orange_tick.png" class = "tick" alt = "picture">';
 							}
 						}
 						else{
