@@ -35,7 +35,7 @@ function getCookie(cname) {
 	return "";
 }
 
-function inputorder() {
+function inputorder(username) {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -43,7 +43,7 @@ function inputorder() {
 		}
 	}
 	var x = document.getElementById("quantity").value;
-	xhttp.open("GET", "inputorder.php?usr=" + getCookie("username") + "&id=" + getCookie("bookid") + "&q=" + x, true);
+	xhttp.open("GET", "inputorder.php?usr=" + username + "&id=" + getCookie("bookid") + "&q=" + x, true);
 	xhttp.send();
 }
 

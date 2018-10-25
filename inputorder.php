@@ -8,12 +8,13 @@
     $quantity = $_GET["q"];
     $date = 
 
-    $query = "INSERT INTO transaction (book_id, username, amount, date_bought) VALUES ($book, \"$user\", $quantity, CURRENT_DATE())";
     $conn = new mysqli($servername, $username, "", "wbd_schema");
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
+    $query = "INSERT INTO transaction (book_id, username, amount, date_bought) VALUES ($book, \"$user\", $quantity, CURRENT_DATE())";
+    
     if ($conn->query($query) === TRUE) {
 
         $query2 = "SELECT LAST_INSERT_ID()";
