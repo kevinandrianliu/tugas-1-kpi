@@ -1,8 +1,27 @@
 <?php
-	if (!(isset($_COOKIE["username"])) || $_COOKIE["username"] == ""){
+//check if cookie is set and a user is already in
+	if (!(isset($_COOKIE["access_token"]))){
 		header("Location: login.php");
 	} else {
-		$uname = $_COOKIE["username"];
+		$ac_token = $_COOKIE["access_token"];
+
+		$dbserver = '127.0.0.1';
+		$dbuser = 'root';
+		$dbpass = '';
+		$conn = mysqli_connect($dbserver,$dbuser,$dbpass);
+
+		mysqli_select_db($conn,"wbd_schema");
+		$data = mysqli_query($conn,"SELECT * FROM access_token WHERE token_id=\"$ac_token\"");
+		$data_1 = mysqli_fetch_assoc($data);
+
+		if (($data_1["token_id"] !== $ac_token) || ($data_1["expiry_time"] < date('Y-m-d H:i:s',time()))){
+			setcookie("access_token","",0);
+			setcookie("uname","",0);	
+			header("Location: login.php");
+		} else {
+			$uname = $data_1["username"];
+		}
+		mysqli_free_result($data);
 	}
 ?>
 <!DOCTYPE HTML>
@@ -15,8 +34,6 @@
 	</head>
 	<body>	
 		<?php
-			$order_id = $_GET["order_id"];
-			$uname = $_COOKIE["username"];
 			$dbserver = '127.0.0.1';
 			$dbuser = 'root';
 			$dbpass = '';
@@ -29,19 +46,18 @@
 			if ($_SERVER["REQUEST_METHOD"] == "POST"){
 				$rating = $_POST["form_rating"];
 				$review = $_POST["form_review"];
+				$order_id = $_POST["fetch_order_id"];
 				mysqli_select_db($conn, "wbd_schema");
-				$query = "UPDATE transaction SET review = '$review', rating = '$rating' WHERE username='$uname' and order_id = \"$order_id\"";
+				$query = "UPDATE transaction SET review = '$review', rating = '$rating' WHERE username='$uname' and order_id = '$order_id'";
 				if (!(mysqli_query($conn,$query))){
 					echo mysqli_error($conn);
 				}
 				mysqli_close($conn);
-				echo "<script>";
-				echo "alert('Berhasil mengirimkan review')";
-				echo "</script>";
 				header("Location: history.php");
 			}
 			else{
-				$query = "SELECT title, author, book_pic FROM transaction, book WHERE transaction.book_id = book.id and order_id = \"$order_id\"";
+				$order_id = $_GET["order_id"];
+				$query = "SELECT title, author, book_pic FROM transaction, book WHERE transaction.book_id = book.id and order_id = '$order_id'";
 				if ($stmt = mysqli_prepare($conn,$query)) {
 					mysqli_stmt_execute($stmt);
 
@@ -69,18 +85,20 @@
 					<p><u>Hi, <?php echo $uname ?></u></p>
 				</div>
 				<div class="info" id="logout">
-					<img src="./icon/io.png" id="logout_pic">
+                    <a href="logout.php">
+						<img src="./icon/io.png" id="logout_pic">
+					</a>
 				</div>
 			</div>
 			<div class="menus">
 				<!-- Warna page yang sedang dipilih = #F26600-->
-				<div class="menu" id="browse">
+				<div class="menu" id="browse" onclick="location.href='searchbook.php'">
 					<p>Browse</p>
 				</div>
-				<div class="menu" id="history">
+				<div class="menu" id="history" onclick="location.href='history.php'">
 					<p>History</p>
 				</div>
-				<div class="menu" id="profile">
+				<div class="menu" id="profile" onclick="location.href='edit_profile.php'">
 					<p>Profile</p>
 				</div>
 			</div>
@@ -126,7 +144,7 @@
 						<span class = "error" id= "review_error"></span>
 					</td>
 				</tr>
-				
+				<input type = "hidden" name = "fetch_order_id" id = "fetch_order_id" value = <?php echo $order_id;?>></input>
 				<tr>
 				<td>
 					
