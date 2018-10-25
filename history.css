@@ -12,6 +12,10 @@
 	margin: 30px 0;
 }
 
+.history > div {
+	margin-bottom: 60px;
+}
+
 .book {
 	display: inline-block;
 	vertical-align: top;
@@ -36,6 +40,7 @@ h2 {
 	font-weight: 600;
 	font-size: 15px;
 	text-align: right;
+	margin-left: 7px;
 }
 
 #book_desc_2 p {
