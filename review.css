@@ -1,3 +1,6 @@
+body {
+	overflow-x: hidden;
+}
 table {
 	margin-top: 50px;
 }
@@ -66,17 +69,19 @@ textarea {
 .back{
 	background-color: white;
 	position: absolute;
-	left: 2vw;
-	top: 95vh;
+	left: 33px;
+	margin-top: 30px;
+	margin-bottom: 50px;
 	color: #D62B33;
 	border: 3px solid #D62B33;
 }
 
 .submit {
     background-color: #2B94D6;
-    position: absolute;
-    left: 40vw;
-    top: 95vh;
+	position: absolute;
+	margin-top: 30px;
+	margin-bottom: 50px;
+    left: 680px;
     color: white;
 }
 
