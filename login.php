@@ -5,7 +5,6 @@
 	</head>
 	<body>
 	<?php
-		include ("script.php");
 		// define variables and set to empty values
 		$usernamelogin = $usernameerror = $passwordlogin = $passworderror = "";
 		$dbserver = '127.0.0.1';
@@ -40,10 +39,10 @@
 			  
 				// If result matched $usernamelogin and $passwordlogin, table row must be 1 row
 				if($count === 1) {
-					setcookie($usernamelogin, $passwordlogin, time() + (3600), "/"); // one hour only
+					setcookie("username", $usernamelogin, time() + (3600), "/"); // one hour only
 					$user = $_COOKIE[$usernamelogin];
 					mysqli_close($conn);
-					header("Location: searchbook.html");
+					header("Location: searchbook.php");
 				}
 				else{
 					$usernameerror = " *Either username is invalid";
@@ -55,7 +54,7 @@
 		}
 	?>
 		<div>
-			<img class = "backgroundimage" src = "./loginregister.png" alt="Login Register Background">
+			<img class = "backgroundimage" src = "./Login and register picture/loginregister.png" alt="Login Register Background">
 			<h2 class = "headerlogin">LOGIN</h2>
 			<form action = "login.php" method = "post" class = "login">
 				<table>
