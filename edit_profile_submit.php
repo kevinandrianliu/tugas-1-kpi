@@ -25,7 +25,7 @@
 			   	die('Could not connect: ' . mysqli_connect_error());
 			}
 
-			mysqli_select_db($conn,"wbd_user_schema");
+			mysqli_select_db($conn,"wbd_schema");
 
 			if ($stmt = mysqli_prepare($conn,"SELECT display_pic FROM user WHERE username = \"".$uname."\"")){
 				mysqli_stmt_execute($stmt);
@@ -46,7 +46,7 @@
 		   	die('Could not connect: ' . mysqli_connect_error());
 		}
 
-		mysqli_select_db($conn,"wbd_user_schema");
+		mysqli_select_db($conn,"wbd_schema");
 		if ($_FILES["pic_path"]["name"] !== ""){
 			$query = "UPDATE user SET name='$name',address='$addr',phone_num='$phone',display_pic='./pp/$file_name' WHERE username='$uname'";
 		} else {

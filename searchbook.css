@@ -1,6 +1,5 @@
 body{
 	margin: 0;
-	overflow-x: hidden;
 }
 .header {
 	background-color: #00AEEF;
@@ -13,28 +12,37 @@ body{
 #store-name {
 	width: 25%;
 	color: white;
-	left: 30px;
+	left: 25px;
 
 	font-family: Arial;
 	font-weight: 400;
-	font-size: 50px;
+	font-size: 43px;
 }
 #store-name p {
 	display: inline;
 	color: #F2D800;
 }
 #user {
-	width: 15%;
-	left: 50%;
+	width: 20%;
+	left: 47.5%;
 	color: white;
 
 	font-family: Helvetica;
-	font-size: 24px;
+	font-size: 23px;
 }
+
+#user p {
+	margin: 15px 0;
+}
+
 #logout {
-	padding: 18px 22.5px;
+	padding: 12px 16.5px;
 	background-color: #F26600;
-	left: 53.2%;
+	left: 49.5%;
+}
+#logout_pic {
+	width: 34px;
+	height: 39px;
 }
 
 .menus {
@@ -48,18 +56,27 @@ body{
 	width: 33.23%;
 
 	font-family: Helvetica;
-	font-size: 30px;
+	font-size: 28px;
 	text-align: center;
 	color: white;
 
 	background-color: #0094CC;
 }
 .menu p {
-    margin: 20px 0px;
+	margin: 14px 0px;
 }
 #history {
 	border-left: 2px solid black;
 	border-right: 2px solid black;
+}
+#browse {
+	background-color: #F26600;
+}
+#history:hover {
+	background-color: #F26600;
+}
+#profile:hover {
+	background-color: #F26600;
 }
 
 .pic {
@@ -76,6 +93,7 @@ body{
     font-family: Cambria;
 	font-size: 25px;
 	text-align: left;
+	padding-bottom: 40px;
 }
 .search h1 {
 	color: #F26600;
@@ -95,7 +113,7 @@ body{
 }
 .search h4 {
 	font-weight: normal;
-    color: gray;
+    color: #2d2d2d;
     text-align: left;
     margin: 5px 0px;
 }
@@ -144,7 +162,7 @@ button {
 }
 .side  {
 	width:250px;
-	height: 300px;
+	height: 330px;
 	margin-top: 30px;
 	margin-left: 30px;
 	text-align: center;
@@ -155,6 +173,10 @@ button {
 	height: 240px;
 	border: 2px gray solid;
 	text-align: center;
+}
+.pic2 img {
+	height: 235px;
+	max-width: 235px;
 }
 .rating {
 	width: 240px;
@@ -204,4 +226,27 @@ button {
 	font-weight: bold;
 	font-size: 50px;
 	cursor: pointer;
+}
+.review {
+	margin: 20px 0px;
+	overflow: auto;
+	clear: both;
+}
+.review #pp {
+	width: 120px;
+	height: 120px;
+	border: 2px solid black;
+	margin-right: 20px;
+	float: left;
+}
+.ratereview {
+	width:120px;
+	text-align: center;
+	float: right;
+}
+.ratereview #star {
+	width: 60px;
+	height: 60px;
+	margin-bottom: 10px;
+	text-align: center;
 }

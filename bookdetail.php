@@ -1,11 +1,4 @@
 <!DOCTYPE HTML>
-<?php
-	# Cookies - EXPERIMENTAL ONLY
-	# REMOVE LATER
-	$idbook = $_GET["id"];
-	setcookie("user", "cirno_strongest");
-	setcookie("bookid", $idbook);
-?>
 <html>
 	<head>
 		<title>Pro Book - Search Book</title>
@@ -29,18 +22,18 @@
 					<p><u>Hi, tayotayo</u></p>
 				</div>
 				<div class="info" id="logout">
-					<img src="./icon/io.png" width="40px" height="45px">
+					<img src="./icon/io.png" id="logout_pic">
 				</div>
 			</div>
 			<div class="menus">
 				<!-- Warna page yang sedang dipilih = #F26600-->
-				<div class="menu" id="browse">
+				<div class="menu" id="browse" onclick="location.href='searchbook.html'">
 					<p>Browse</p>
 				</div>
 				<div class="menu" id="history">
 					<p>History</p>
 				</div>
-				<div class="menu" id="profile">
+				<div class="menu" id="profile" onclick="location.href='edit_profile.html'">
 					<p>Profile</p>
 				</div>
 			</div>
@@ -67,12 +60,12 @@
 							$row = $result->fetch_assoc();
 							echo "<div class = 'side' >";
 							echo "<div class = 'pic2'>";
-							echo '<img src="' . $row["book_pic"]. '" height="235px" max-width="235px" />';
+							echo '<img src="' . $row["book_pic"]. '"/>';
 							echo "</div>";
 
 							echo "<div class='rating'>";
 
-							$query = "SELECT AVG(rating) FROM rating_review WHERE book_id=$id";
+							$query = "SELECT AVG(rating) FROM transaction WHERE book_id=$id";
 							$result = $conn->query($query);
 
 							$ratrow = $result->fetch_assoc();
@@ -88,6 +81,13 @@
 								$x += 1;
 							}
 							echo "</div>";
+							$rat = $ratrow["AVG(rating)"];
+							if (is_null($rat)) {
+								$rat = 0;
+							}
+							echo "<div>";
+							echo number_format($rat, 1, '.', '');
+							echo " / 5.0 </div>";
 							echo "</div>";
 							echo "<h1>" . $row["title"] . "</h1>";
 							echo "<h4>" . $row["author"] . "</h4>";
@@ -114,10 +114,41 @@
 						</select>
 						<button onclick="inputorder()">Order</button>
 				</div>
-				<div class = "review">
-					<h2>Review</h2>
-					
-				</div>
+				<h2>Review</h2>
+				<?php
+					$servername = "localhost";
+					$username = "root";
+					# $password = "password";
+
+					$conn = new mysqli($servername, $username, "", "wbd_schema");
+					if ($conn->connect_error) {
+						die("Connection failed: " . $conn->connect_error);
+					}
+
+					$id = $_GET["id"];
+					$query = "SELECT DISTINCT transaction.book_id, transaction.username, user.display_pic, transaction.rating, transaction.review FROM transaction INNER JOIN user ON (transaction.username = user.username)  WHERE book_id=$id";
+
+					$result = $conn->query($query);
+
+					if ($result->num_rows > 0) {
+						while ($row = $result->fetch_assoc()) {
+							if (is_null($row["review"])) {
+
+							} else {
+								echo '<div class = "review">';
+								echo '<img id="pp" src="' . $row["display_pic"]. '">';
+								echo '<div class="ratereview">';
+								echo '<img id="star" src="./icon/fullstar.png">';
+								echo '<p>' . number_format($row["rating"], 1, '.', '') . '/5.0</p>';
+								echo '</div>';
+								echo '<h4>' . $row["username"] . '</h4>';
+								echo '<p>' . $row["review"] . '</p>';
+								echo '</div>';
+							}
+						}
+					}
+					$conn->close();
+				?>
 			</div>
 		</div>
 	</body>
