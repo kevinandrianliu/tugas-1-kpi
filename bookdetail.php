@@ -1,3 +1,11 @@
+<?php
+	//check if cookie is set and a user is already in
+	if (!(isset($_COOKIE["username"])) || $_COOKIE["username"] == ""){
+		header("Location: login.php");	//if not, redirect to login page
+	} else {
+		$uname = $_COOKIE["username"];	//else, retrieve the cookie
+	}
+?>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -19,7 +27,7 @@
 					- Book
 				</div>
 				<div class="info" id="user">
-					<p><u>Hi, tayotayo</u></p>
+					<p><u>Hi, <?php echo $uname ?></u></p>
 				</div>
 				<div class="info" id="logout">
 					<img src="./icon/io.png" id="logout_pic">
