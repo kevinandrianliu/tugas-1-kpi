@@ -54,6 +54,10 @@
 }
 .result {
 	margin: 20px 0px;
+	clear: right;
+}
+.res {
+	float: right;
 }
 .persection {
 	padding: 30px 30px;

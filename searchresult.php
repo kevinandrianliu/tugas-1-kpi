@@ -65,7 +65,6 @@
 		</div>
 		<div>
 			<div class = "search">
-			<h1>Search Result</h1>
 				<div class = "result">
 					<?php
 						$servername = "localhost";
@@ -84,7 +83,10 @@
 						$result = $conn->query($query);
 
 						if ($result) {
-						echo "<p>Found " . $result->num_rows . " results.</p>";
+							echo "<h1>Search Result</h1>";
+							echo "<div class='res'>";
+							echo "<p>Found <b><u>" . $result->num_rows . "</u></b> results.</p>";
+							echo "</div>";
 							while($row = $result->fetch_assoc()) {
 								echo "<div class = 'persection'>";
 								echo "<div class='pic' >";
