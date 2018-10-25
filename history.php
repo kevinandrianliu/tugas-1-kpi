@@ -40,7 +40,7 @@
 					- Book
 				</div>
 				<div class="info" id="user">
-					<p><u>Hi, tayotayo</u></p>
+					<p><u>Hi, <?php echo $uname; ?></u></p>
 				</div>
 				<div class="info" id="logout">
 					<img src="./icon/io.png" id="logout_pic">
@@ -48,15 +48,21 @@
 			</div>
 			<div class="menus">
 				<!-- Warna page yang sedang dipilih = #F26600-->
-				<div class="menu" id="browse">
-					<p>Browse</p>
-				</div>
-				<div class="menu" id="history">
-					<p>History</p>
-				</div>
-				<div class="menu" id="profile">
-					<p>Profile</p>
-				</div>
+				<a href="./searchbook.php">
+					<div class="menu" id="browse">
+						<p>Browse</p>
+					</div>
+				</a>
+				<a href="./history.php">
+					<div class="menu" id="history">
+						<p>History</p>
+					</div>
+				</a>
+				<a href="./profile.php">
+					<div class="menu" id="profile">
+						<p>Profile</p>
+					</div>
+				</a>
 			</div>
 		</div>
 		<div class="history">

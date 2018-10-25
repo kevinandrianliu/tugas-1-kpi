@@ -1,3 +1,13 @@
+#browse:hover {
+	background-color: #F26600;
+}
+#history {
+	background-color: #F26600;
+}
+#profile:hover {
+	background-color: #F26600;
+}
+
 .history {
 	position: relative;
 	font-family: Arial;

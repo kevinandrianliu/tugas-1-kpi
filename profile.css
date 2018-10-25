@@ -1,6 +1,13 @@
 #profile {
 	background-color: #F26600;
 }
+#history:hover {
+	background-color: #F26600;
+}
+#browse:hover {
+	background-color: #F26600;
+}
+
 
 .main_info {
 	background-color: #00374C;
