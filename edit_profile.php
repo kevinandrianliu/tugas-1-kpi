@@ -1,9 +1,29 @@
 <?php
 	//check if cookie is set and a user is already in
-	if (!(isset($_COOKIE["username"])) || $_COOKIE["username"] == ""){
-		header("Location: index.php");	//if not, redirect to login page
+	if (!(isset($_COOKIE["access_token"]))){
+		header("Location: index.php");
 	} else {
-		$uname = $_COOKIE["username"];	//else, retrieve the cookie
+		$ac_token = $_COOKIE["access_token"];
+
+		$dbserver = '127.0.0.1';
+		$dbuser = 'root';
+		$dbpass = '';
+		$conn = mysqli_connect($dbserver,$dbuser,$dbpass);
+
+		mysqli_select_db($conn,"wbd_schema");
+		$data = mysqli_query($conn,"SELECT * FROM access_token WHERE token_id=\"$ac_token\"");
+		$data_1 = mysqli_fetch_assoc($data);
+
+		if (($data_1["token_id"] !== $ac_token) || ($data_1["expiry_time"] < date('Y-m-d H:i:s',time()))){
+			setcookie("access_token","",0);
+			setcookie("uname","",0);
+			
+			header("Location: index.php");
+		} else {
+			$uname = $data_1["username"];
+		}
+
+		mysqli_free_result($data);
 	}
 ?>
 <!DOCTYPE HTML>
@@ -17,22 +37,8 @@
 	<body>
 		<div>
 			<?php
-				$dbserver = '127.0.0.1';
-				$dbuser = 'root';
-				$dbpass = '';
-				$conn = mysqli_connect($dbserver,$dbuser,$dbpass);
-
-				if(mysqli_connect_error()) {
-				   	die('Could not connect: ' . mysqli_connect_error());
-				}
-				mysqli_select_db($conn, "wbd_schema");
-				if ($stmt = mysqli_prepare($conn,"SELECT name,email,address,phone_num,display_pic FROM user WHERE username = \"".$uname."\"")) {
-					mysqli_stmt_execute($stmt);
-
-					mysqli_stmt_bind_result($stmt,$name,$email,$addr,$phone,$dp);
-
-					mysqli_stmt_fetch($stmt);
-				}
+				$data = mysqli_query($conn,"SELECT name,email,address,phone_num,display_pic FROM user WHERE username = \"".$uname."\"");
+				$data_1 = mysqli_fetch_assoc($data);
 			?>
 			<div class="header">
 				<div class="info" id="store-name">
@@ -66,7 +72,7 @@
 					<tr class="pp_tr">
 						<td>
 							<div class="pp_container">
-								<img src=<?php echo "\"".$dp."\""; ?> id="pp">
+								<img src=<?php echo $data_1["display_pic"] ?> id="pp">
 							</div>
 						</td>
 						<td class="pp_td">
@@ -82,7 +88,7 @@
 							Name
 						</td>
 						<td>
-							<input type="text" name="name" id="name" value=<?php echo "\"$name\""; ?>>
+							<input type="text" name="name" id="name" value=<?php echo "\"".$data_1["name"]."\""; ?>>
 						</td>
 						<td>
 							<div class="errors" id="name_error"></div>
@@ -93,7 +99,7 @@
 							Address
 						</td>
 						<td>
-							<textarea name="address" id="address"><?php echo $addr; ?></textarea>
+							<textarea name="address" id="address"><?php echo $data_1["address"]; ?></textarea>
 						</td>
 						<td>
 							<div class="errors" id="addr_error"></div>
@@ -104,7 +110,7 @@
 							Phone Number
 						</td>
 						<td>
-							<input type="text" name="phone" id="phone" value=<?php echo $phone; ?>>
+							<input type="text" name="phone" id="phone" value=<?php echo $data_1["phone_num"]; ?>>
 						</td>
 						<td>
 							<div class="errors" id="phone_error"></div>
@@ -120,5 +126,9 @@
 					</tr>
 				</table>
 			</form>
+			<?php
+				mysqli_free_result($data);
+				mysqli_close($conn);
+			?>
 	</body>
 </html>

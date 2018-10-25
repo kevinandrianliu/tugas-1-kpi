@@ -4,7 +4,6 @@
 		header("Location: index.php");
 	} else {
 		$ac_token = $_COOKIE["access_token"];
-		$uname = $_COOKIE["uname"];
 
 		$dbserver = '127.0.0.1';
 		$dbuser = 'root';
@@ -12,7 +11,7 @@
 		$conn = mysqli_connect($dbserver,$dbuser,$dbpass);
 
 		mysqli_select_db($conn,"wbd_schema");
-		$data = mysqli_query($conn,"SELECT token_id,expiry_time FROM access_token WHERE username=\"$uname\"");
+		$data = mysqli_query($conn,"SELECT * FROM access_token WHERE token_id=\"$ac_token\"");
 		$data_1 = mysqli_fetch_assoc($data);
 
 		if (($data_1["token_id"] !== $ac_token) || ($data_1["expiry_time"] < date('Y-m-d H:i:s',time()))){
@@ -20,6 +19,8 @@
 			setcookie("uname","",0);
 			
 			header("Location: index.php");
+		} else {
+			$uname = $data_1["username"];
 		}
 		mysqli_free_result($data);
 	}

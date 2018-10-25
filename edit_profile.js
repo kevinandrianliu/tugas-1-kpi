@@ -13,7 +13,6 @@ function validate(){
 	var addr = document.getElementById("address").value;
 	var phone = document.getElementById("phone").value;
 	var dp = document.getElementById("pic_path").value;
-	var form = document.getElementById("save_butt");
 	var legal = true;
 
 	if (dp.length > 0){
@@ -48,7 +47,7 @@ function validate(){
 
 	var phone_test = 999999999999 - phone;
 	if (isNaN(phone_test)){
-		document.getElementById("phone_error").innerHTML = "*no. telelon harus berupa angka.";
+		document.getElementById("phone_error").innerHTML = "*no. telepon harus berupa angka.";
 		legal = false;
 	}
 
