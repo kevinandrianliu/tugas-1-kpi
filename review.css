@@ -1,0 +1,98 @@
+table {
+	margin-top: 50px;
+}
+
+h1{
+	color: #F26600;
+	font-weight: normal;
+	font-size: 50px;
+    margin: 0 30px -30px 30px;
+}
+
+h3{
+	font-weight: normal;
+    padding: 0px 30px;
+	font-size: 25px;
+}
+
+#book{
+	height: 200px;
+	width: 200px;
+	margin: 0px 200px;
+}
+
+#book_desc {
+	vertical-align: top;
+}
+
+h2{
+	font-weight: normal;
+    margin: 0px 30px 0px;
+	font-size: 40px;
+	color: #112A77;
+}
+
+#form_rating{
+	width: 50px;
+	margin: 10px 30px;
+}
+
+.error{
+	color: red;
+	font-size: 20px;
+}
+
+textarea {
+	width: 800px;
+	height: 150px;
+	padding: 8px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 4px;
+	resize: none;
+	margin: 0px 30px;
+}
+
+.btn {
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+	height: 60px;
+	width: 150px;
+	border-radius: 10px;
+}
+
+.back{
+	background-color: white;
+	position: absolute;
+	left: 2vw;
+	top: 95vh;
+	color: #D62B33;
+	border: 3px solid #D62B33;
+}
+
+.submit {
+    background-color: #2B94D6;
+    position: absolute;
+    left: 40vw;
+    top: 95vh;
+    color: white;
+}
+
+error{
+	color: red;
+	font-size: 20px;
+}
+
+#profile:hover{
+	background-color : #F26600;
+}
+
+#history{
+	background-color : #F26600;
+}
+
+#browse:hover{
+	background-color : #F26600;
+}
