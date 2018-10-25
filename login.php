@@ -39,10 +39,24 @@
 			  
 				// If result matched $usernamelogin and $passwordlogin, table row must be 1 row
 				if($count === 1) {
-					setcookie("username", $usernamelogin, time() + (3600), "/"); // one hour only
-					$user = $_COOKIE[$usernamelogin];
+					$uname = $usernamelogin;
+					$ac_token = md5(mt_rand());
+					$ex_timestamp_database = time() + (60*60*24);
+					$ex_timestamp_cookie = $ex_timestamp_database + (10*365*24*60*60);
+					$ex_date_database = date('Y-m-d H:i:s', $ex_timestamp_database);
+					setcookie("access_token",$ac_token,$ex_timestamp_cookie);
+
+					$dbserver = "127.0.0.1";
+					$dbuser = "root";
+					$dbpass = "";
+					$conn = mysqli_connect($dbserver,$dbuser,$dbpass);
+
+					mysqli_select_db($conn,"wbd_schema");
+					mysqli_query($conn,"DELETE FROM access_token WHERE username=\"$uname\"");
+					mysqli_query($conn,"INSERT INTO access_token (token_id,username,expiry_time) VALUES (\"$ac_token\",\"$uname\",'$ex_date_database')");
+
 					mysqli_close($conn);
-					header("Location: searchbook.php");
+					header('Location: searchbook.php');
 				}
 				else{
 					$usernameerror = " *Either username is invalid";

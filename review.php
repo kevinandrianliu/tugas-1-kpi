@@ -15,8 +15,7 @@
 	</head>
 	<body>	
 		<?php
-			//$order_id = $_GET["order_id"];
-			$order_id = 2;
+			$order_id = $_GET["order_id"];
 			$uname = $_COOKIE["username"];
 			$dbserver = '127.0.0.1';
 			$dbuser = 'root';
