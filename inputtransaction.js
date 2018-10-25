@@ -43,7 +43,7 @@ function inputorder() {
 		}
 	}
 	var x = document.getElementById("quantity").value;
-	xhttp.open("GET", "inputorder.php?usr=" + getCookie("user") + "&id=" + getCookie("bookid") + "&q=" + x, true);
+	xhttp.open("GET", "inputorder.php?usr=" + getCookie("username") + "&id=" + getCookie("bookid") + "&q=" + x, true);
 	xhttp.send();
 }
 
