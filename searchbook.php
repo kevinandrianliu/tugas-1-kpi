@@ -52,7 +52,7 @@
 				</div>
 				<div class="menus">
 					<!-- Warna page yang sedang dipilih = #F26600-->
-					<div class="menu" id="browse" onclick="location.href='searchbook.html'">
+					<div class="menu" id="browse" onclick="location.href='searchbook.php'">
 						<p>Browse</p>
 					</div>
 					<div class="menu" id="history" onclick="location.href='history.php'">
