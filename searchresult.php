@@ -31,7 +31,7 @@
 				<div class="menu" id="browse" onclick="location.href='searchbook.html'">
 					<p>Browse</p>
 				</div>
-				<div class="menu" id="history">
+				<div class="menu" id="history" onclick="location.href='history.php'">
 					<p>History</p>
 				</div>
 				<div class="menu" id="profile" onclick="location.href='edit_profile.html'">
