@@ -1,9 +1,30 @@
 <?php
 	//check if cookie is set and a user is already in
-	if (!(isset($_COOKIE["username"])) || $_COOKIE["username"] == ""){
-		header("Location: login.php");	//if not, redirect to login page
+	if (!(isset($_COOKIE["access_token"]))){
+		header("Location: login.php");
 	} else {
-		$uname = $_COOKIE["username"];	//else, retrieve the cookie
+		$ac_token = $_COOKIE["access_token"];
+
+		$dbserver = '127.0.0.1';
+		$dbuser = 'root';
+		$dbpass = '';
+		$conn = mysqli_connect($dbserver,$dbuser,$dbpass);
+
+		mysqli_select_db($conn,"wbd_schema");
+		$data = mysqli_query($conn,"SELECT * FROM access_token WHERE token_id=\"$ac_token\"");
+		$data_1 = mysqli_fetch_assoc($data);
+
+		if (($data_1["token_id"] !== $ac_token) || ($data_1["expiry_time"] < date('Y-m-d H:i:s',time()))){
+			setcookie("access_token","",0);
+			setcookie("uname","",0);
+			
+			header("Location: login.php");
+		} else {
+			$uname = $data_1["username"];
+		}
+
+		mysqli_free_result($data);
+		mysqli_close($conn);
 	}
 ?>
 <!DOCTYPE HTML>
@@ -11,6 +32,7 @@
 	<head>
 		<title>Pro Book - Search Book</title>
 		<link rel="stylesheet" type="text/css" href="./searchbook.css">
+		<link rel="stylesheet" type="text/css" href="./base.css">
 		<script src="inputtransaction.js"></script>
 	</head>
 	<body>
@@ -30,7 +52,9 @@
 					<p><u>Hi, <?php echo $uname ?></u></p>
 				</div>
 				<div class="info" id="logout">
-					<img src="./icon/io.png" id="logout_pic">
+					<a href="logout.php">
+						<img src="./icon/io.png" id="logout_pic">
+					</a>
 				</div>
 			</div>
 			<div class="menus">
