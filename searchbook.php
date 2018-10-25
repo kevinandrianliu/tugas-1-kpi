@@ -58,7 +58,7 @@
 					<div class="menu" id="history" onclick="location.href='history.php'">
 						<p>History</p>
 					</div>
-					<div class="menu" id="profile" onclick="location.href='edit_profile.html'">
+					<div class="menu" id="profile" onclick="location.href='edit_profile.php'">
 						<p>Profile</p>
 					</div>
 				</div>
