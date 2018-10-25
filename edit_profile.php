@@ -1,7 +1,7 @@
 <?php
 	//check if cookie is set and a user is already in
 	if (!(isset($_COOKIE["access_token"]))){
-		header("Location: index.php");
+		header("Location: login.php");
 	} else {
 		$ac_token = $_COOKIE["access_token"];
 
@@ -18,7 +18,7 @@
 			setcookie("access_token","",0);
 			setcookie("uname","",0);
 			
-			header("Location: index.php");
+			header("Location: login.php");
 		} else {
 			$uname = $data_1["username"];
 		}

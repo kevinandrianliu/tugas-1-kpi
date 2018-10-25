@@ -28,7 +28,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>???</title>
+		<title>History - <?php echo $uname?></title>
 		<link rel="stylesheet" type="text/css" href="./base.css">
 		<link rel="stylesheet" type="text/css" href="./history.css">
 	</head>
