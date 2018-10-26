@@ -6,7 +6,6 @@
     $user = $_GET["usr"];
     $book = $_GET["id"];
     $quantity = $_GET["q"];
-    $date = 
 
     $conn = new mysqli($servername, $username, "", "wbd_schema");
     if ($conn->connect_error) {

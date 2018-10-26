@@ -144,7 +144,7 @@
 							<option value="9">9</option>
 							<option value="10">10</option>
 						</select>
-						<button onclick="inputorder('<?php echo $uname ?>')">Order</button>
+						<button onclick="inputorder('<?php echo $uname ?>', '<?php echo $_GET['id']?>')">Order</button>
 				</div>
 				<h2>Review</h2>
 				<?php
