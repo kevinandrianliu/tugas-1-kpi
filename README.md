@@ -8,7 +8,6 @@ Membuat sebuah Website Toko Buku
 3. Pastikan semua port yang diperlukan(80 dan 443 untuk Apache dan 3306 untuk MySQL) tidak diokupasi oleh aplikasi lainnya sehingga port tersebut dapat digunakan oleh Apache dan MySQL.
 
 ### Pembagian Tugas
-*Setiap anggota kelompok diwajibkan untuk mengerjakan bagian tampilan dan fungsionalitas.*
 
 **Tampilan**
 1. Login : 13516118
