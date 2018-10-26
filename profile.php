@@ -55,7 +55,9 @@
 					<p><u>Hi, <?php echo $uname ?></u></p>
 				</div>
 				<div class="info" id="logout">
-					<img src="./icon/io.png" id="logout_pic">
+					<a href="logout.php">
+						<img src="./icon/io.png" id="logout_pic">
+					</a>
 				</div>
 			</div>
 			<div class="menus">

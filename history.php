@@ -40,29 +40,25 @@
 					- Book
 				</div>
 				<div class="info" id="user">
-					<p><u>Hi, <?php echo $uname; ?></u></p>
+					<p><u>Hi,  <?php echo $uname ?></u></p>
 				</div>
 				<div class="info" id="logout">
-					<img src="./icon/io.png" id="logout_pic">
+				<a href="logout.php">
+						<img src="./icon/io.png" id="logout_pic">
+					</a>
 				</div>
 			</div>
 			<div class="menus">
 				<!-- Warna page yang sedang dipilih = #F26600-->
-				<a href="./searchbook.php">
-					<div class="menu" id="browse">
-						<p>Browse</p>
-					</div>
-				</a>
-				<a href="./history.php">
-					<div class="menu" id="history">
-						<p>History</p>
-					</div>
-				</a>
-				<a href="./profile.php">
-					<div class="menu" id="profile">
-						<p>Profile</p>
-					</div>
-				</a>
+				<div class="menu" id="browse" onclick="location.href='searchbook.php'">
+					<p>Browse</p>
+				</div>
+				<div class="menu" id="history" onclick="location.href='history.php'">
+					<p>History</p>
+				</div>
+				<div class="menu" id="profile" onclick="location.href='profile.php'">
+					<p>Profile</p>
+				</div>
 			</div>
 		</div>
 		<div class="history">
@@ -80,7 +76,7 @@
 
 				$data_1 = mysqli_fetch_assoc($data);
 				while (!(is_null($data_1))){
-					echo "<div>";
+					echo "<div  class=\"bookhistory\">";
 					echo "<div class=\"book\" id=\"book_pic\">";
 					echo "<img src=\"".$data_1["book_pic"]."\" id=\"pic\">";
 					echo "</div>";
