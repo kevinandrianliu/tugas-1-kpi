@@ -76,8 +76,8 @@ a.link_register{
 	position: absolute;
 	color: black;
 	left: 20vw;
-	top: 70vh;
 	font-size: 20px;
+	top: 80vh;
 }
 
 .btn {
