@@ -19,29 +19,25 @@
 .search {
     margin: auto;
 	width: 92%;
-    font-family: Cambria;
+    font-family: Arial;
 	font-size: 25px;
 	text-align: left;
 	padding-bottom: 40px;
 }
 .search h1 {
 	color: #F26600;
-	font-weight: normal;
     margin: 30px 0px 10px 0px;
 }
 .search h2 {
 	color: midnightblue;
-	font-weight: normal;
 	margin: 0px;
 }
 .search h3 {
-	font-weight: normal;
     color: #F26600;
     text-align: left;
     margin: 0px 0px;
 }
 .search h4 {
-	font-weight: normal;
     color: #2d2d2d;
     text-align: left;
     margin: 5px 0px;
@@ -146,7 +142,7 @@ button {
 	z-index: 11;
 	padding: 10px 20px;
 	clear: left;
-	font-family: Cambria;
+	font-family: Arial;
 }
 #dialogbox img {
 	float: left;
