@@ -98,6 +98,23 @@ textarea {
     float: right;
 }
 
+.ratestar {
+	text-align: center;
+}
+
+label > input{ /* HIDE RADIO */
+	visibility: hidden; /* Makes input not-clickable */
+	position: absolute; /* Remove input from document flow */
+}
+label > input + img{ /* IMAGE STYLES */
+	width: 90px;
+	height: 87px;
+	cursor: pointer;
+}
+input:checked img.star {
+	content: url("./icon/fullstar.png");
+}
+
 error{
 	color: red;
 	font-size: 20px;

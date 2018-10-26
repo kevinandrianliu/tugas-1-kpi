@@ -1,11 +1,11 @@
 function validate(){
-	var rating = document.getElementById("form_rating").value;
+	var rating = inputchecked();
 	var review = document.getElementById("form_review").value;
 	console.log(rating);
 	console.log(review);
 	var form = document.getElementsByClassName("btn submit");
 	var legal = true;
-	if (rating.length == 0){
+	if (rating == 0){
 		document.getElementById("rating_error").innerHTML = "*field harus diisi.";
 		legal = false;
 	}
@@ -25,3 +25,13 @@ function validate(){
 function redirect(){
 	window.location = "history.php";
 };
+
+function inputchecked() {
+	check = 0;
+	for (i = 0; i < 5; i++) {
+		if (document.getElementsByName("form_rating")[i].checked) {
+			check = i+1;
+		}
+	}
+	return check;
+}

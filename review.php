@@ -31,6 +31,7 @@
 		<link rel="stylesheet" type="text/css" href="./base.css">
 		<link rel="stylesheet" type="text/css" href="./review.css">
 		<script src="./review.js"></script>
+		<script src="./rating.js"></script>
 	</head>
 	<body>	
 		<?php
@@ -111,8 +112,14 @@
                     <h4><?php echo "$author";?></h4>
                 </div>
                 <div class="rating">
-                    <h2>Add Rating </h2>
-                    <input type = "text" name = "form_rating" id = "form_rating"></input>
+					<h2>Add Rating </h2>
+					<div class="ratestar">
+						<label><input name="form_rating" type="radio" value="1" /><img src='./icon/nullstar.png' class="star" id = "1" onclick="check(1)"></label>
+						<label><input name="form_rating" type="radio" value="2" /><img src='./icon/nullstar.png' class="star" id = "2" onclick="check(2)"></label>
+						<label><input name="form_rating" type="radio" value="3" /><img src='./icon/nullstar.png' class="star" id = "3" onclick="check(3)"></label>
+						<label><input name="form_rating" type="radio" value="4" /><img src='./icon/nullstar.png' class="star" id = "4" onclick="check(4)"></label>
+						<label><input name="form_rating" type="radio" value="5" /><img src='./icon/nullstar.png' class="star" id = "5" onclick="check(5)"></label>
+					</div>	
                     <span class = "error" id = "rating_error"> </span>
                 </div>
                 <div class="comment">
