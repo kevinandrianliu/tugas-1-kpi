@@ -27,7 +27,7 @@ function redirect(){
 };
 
 function inputchecked() {
-	check = 0;
+	var check = 0;
 	for (i = 0; i < 5; i++) {
 		if (document.getElementsByName("form_rating")[i].checked) {
 			check = i+1;
