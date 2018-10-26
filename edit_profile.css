@@ -1,7 +1,7 @@
 .edit_profile {
 	position: relative;
-	left: 3%;
-	width: 97%;
+	width: 40%;
+	margin: auto;
 }
 
 .edit_profile > p {
@@ -36,7 +36,6 @@
 table {
 	font-family: Arial;
 }
-
 td p {
 	margin-top: 25px;
 	margin-bottom: 7px;
@@ -44,6 +43,7 @@ td p {
 
 .buttons {
 	text-decoration: none;
+	cursor: pointer;
 }
 #pic_path {
 	height: 20px;
