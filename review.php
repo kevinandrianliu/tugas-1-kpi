@@ -103,56 +103,29 @@
 				</div>
 			</div>
 		</div>
-		<form action = "review.php" name="edit_form" method = "post">
-			<table>
-				<tr>
-					<td id="book_desc">
-						<h1><?php echo "$title";?></h1>
-						<h3><?php echo "$author";?></h3>
-					</td>
-					<td>
-					<img src='<?php echo "$book_pic";?>' id = "book">
-					</td>
-				</tr>
-						 
-				<tr>
-					<td>
-						<h2>Add Rating </h2><br>
-					</td>
-				</tr>
-
-				<tr>
-					<td>
-						<input type = "text" name = "form_rating" id = "form_rating"></input><br><br><br>
-					</td>
-					<td>
-						<span class = "error" id = "rating_error"> </span>
-					</td>
-				</tr>
-			
-				<tr>
-					<td>
-						<h2>Add Comment </h2><br>
-					</td>
-				</tr>
-			
-				<tr>
-					<td>
-						<textarea name = "form_review" id = "form_review"></textarea>
-					</td>
-					<td>
-						<span class = "error" id= "review_error"></span>
-					</td>
-				</tr>
-				<input type = "hidden" name = "fetch_order_id" id = "fetch_order_id" value = <?php echo $order_id;?>></input>
-				<tr>
-				<td>
-					
-					<input type = "button" class = 'btn back' onclick = "redirect()" value = "Back"></input>
-					<input type = "button" class = 'btn submit' onclick = "validate()" value = "Submit"></input>
-				</td>
-				</tr>
-			</table>
-		</form>		
+		<div class="detail">
+            <form action = "review.php" name="edit_form" method = "post">
+                <div class="bookdetail">
+                    <img src='<?php echo "$book_pic";?>' id = "book">
+                    <h1><?php echo "$title";?></h1>
+                    <h4><?php echo "$author";?></h4>
+                </div>
+                <div class="rating">
+                    <h2>Add Rating </h2>
+                    <input type = "text" name = "form_rating" id = "form_rating"></input>
+                    <span class = "error" id = "rating_error"> </span>
+                </div>
+                <div class="comment">
+                    <h2>Add Comment </h2><br>
+                    <textarea name = "form_review" id = "form_review"></textarea>
+                    <span class = "error" id= "review_error"></span>
+                    <input type = "hidden" name = "fetch_order_id" id = "fetch_order_id" value = <?php echo $order_id;?>></input>
+                    <div class="button">
+                        <input type = "button" class = 'btn back' onclick = "redirect()" value = "Back"></input>
+                        <input type = "button" class = 'btn submit' onclick = "validate()" value = "Submit"></input>
+                    </div>
+                </div>
+            </form>	
+        </div>	
 	</body>
 </html>
