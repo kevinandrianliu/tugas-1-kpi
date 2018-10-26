@@ -38,6 +38,6 @@ Membuat sebuah Website Toko Buku
 
 ## Anggota Kelompok
 
-Kevin Fernaldy / 13516109
-Kevin Andrian Liwinata / 13516118
-Teresa / 13516133
+Kevin Fernaldy / 13516109 <br/>
+Kevin Andrian Liwinata / 13516118 <br/>
+Teresa / 13516133 <br/>
