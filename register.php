@@ -16,10 +16,10 @@
 						//consequence 
 						if(xmlhttp.responseText == "valid"){
 							if(element == 'username'){
-								document.getElementById("uname").innerHTML = '<img src="./Login and register picture/orange_tick.png" class = "tick" alt = "picture">';
+								document.getElementById("uname").innerHTML = '<img src="./icon/orange_tick.png" class = "tick" alt = "picture">';
 							}
 							else{
-								document.getElementById("mail").innerHTML = '<img src="./Login and register picture/orange_tick.png" class = "tick" alt = "picture">';
+								document.getElementById("mail").innerHTML = '<img src="./icon/orange_tick.png" class = "tick" alt = "picture">';
 							}
 						}
 						else{
@@ -164,7 +164,7 @@
 		}
 	?>
 		<div>
-			<img class = "backgroundimage" src = "./Login and register picture/loginregister.png" alt="Login Register Background">
+			<img class = "backgroundimage" src = "./icon/loginregister.png" alt="Login Register Background">
 			<h2 class = "headerregister">REGISTER</h2>
 			<form action="register.php" method = "post" class ="register">
 				<table>
