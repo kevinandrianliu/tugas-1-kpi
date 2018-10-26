@@ -97,7 +97,7 @@
 
 							echo "<div class='rating'>";
 
-							$query = "SELECT AVG(rating) FROM transaction WHERE book_id=$id";
+							$query = "SELECT AVG(rating) FROM transaction WHERE book_id=$id AND rating > 0";
 							$result = $conn->query($query);
 
 							$ratrow = $result->fetch_assoc();
