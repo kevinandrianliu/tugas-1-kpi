@@ -13,8 +13,8 @@
     }
 
     $query = "INSERT INTO transaction (book_id, username, amount, date_bought) VALUES (?, ?, ?, CURRENT_DATE())";
-    $stmt = $conn->prepare($query)
-    $stmt->bind_param("isi",$book,$user,$quantity)
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("isi",$book,$user,$quantity);
     
     if ($stmt->execute() === TRUE) {
 

@@ -32,8 +32,11 @@
 				
 				//finding in database
 				mysqli_select_db($conn, "wbd_schema");
-				$sql = "SELECT username FROM user WHERE username = '$usernamelogin' and password = '$passwordlogin'";
-				$result = mysqli_query($conn,$sql);
+				$sql = "SELECT username FROM user WHERE username = ? and password = ?";
+				$stmt = $conn->prepare($sql);
+				$stmt->bind_param('ss',$usernamelogin, $passwordlogin);
+				$stmt->execute();
+				$result = $stmt->get_result();
 				$row = mysqli_fetch_array($result,MYSQLI_ASSOC);		 
 				$count = mysqli_num_rows($result);
 			  
