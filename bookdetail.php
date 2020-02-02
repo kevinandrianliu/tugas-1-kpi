@@ -97,9 +97,11 @@
 							echo "</div>";
 
 							echo "<div class='rating'>";
-
-							$query = "SELECT AVG(rating) FROM transaction WHERE book_id=$id AND rating > 0";
-							$result = $conn->query($query);
+							
+							$stmt2 = $conn->prepare('SELECT AVG(rating) FROM transaction WHERE book_id= ? AND rating > 0');
+							$stmt2->bind_param('i', $id);
+							$stmt2->execute();
+							$result = $stmt2->get_result();
 
 							$ratrow = $result->fetch_assoc();
 							$star = (int) $ratrow["AVG(rating)"];
