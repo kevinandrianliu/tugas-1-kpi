@@ -161,9 +161,11 @@
 					}
 
 					$id = $_GET["id"];
-					$query = "SELECT DISTINCT transaction.book_id, transaction.username, user.display_pic, transaction.rating, transaction.review FROM transaction INNER JOIN user ON (transaction.username = user.username)  WHERE book_id=$id";
+					$stmt3 = $conn->prepare('SELECT DISTINCT transaction.book_id, transaction.username, user.display_pic, transaction.rating, transaction.review FROM transaction INNER JOIN user ON (transaction.username = user.username)  WHERE book_id=?');
+					$stmt3->bind_param('i', $id);
+					$stmt3->execute();
+					$result = $stmt3->get_result();
 
-					$result = $conn->query($query);
 
 					if ($result->num_rows > 0) {
 						while ($row = $result->fetch_assoc()) {
