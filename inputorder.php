@@ -12,9 +12,11 @@
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $query = "INSERT INTO transaction (book_id, username, amount, date_bought) VALUES ($book, \"$user\", $quantity, CURRENT_DATE())";
+    $query = "INSERT INTO transaction (book_id, username, amount, date_bought) VALUES (?, ?, ?, CURRENT_DATE())";
+    $stmt = $conn->prepare($query)
+    $stmt->bind_param("isi",$book,$user,$quantity)
     
-    if ($conn->query($query) === TRUE) {
+    if ($stmt->execute() === TRUE) {
 
         $query2 = "SELECT LAST_INSERT_ID()";
         $result = $conn->query($query2);
