@@ -82,11 +82,12 @@
 						if ($conn->connect_error) {
 							die("Connection failed: " . $conn->connect_error);
 						}
-
 						$id = $_GET["id"];
-						$query = "SELECT * FROM book WHERE id=$id";
+						$stmt = $conn->prepare('SELECT * FROM book WHERE id=?');
+						$stmt->bind_param('i', $id);
+						$stmt->execute();
 
-						$result = $conn->query($query);
+						$result = $stmt->get_result();
 
 						if ($result) {
 							$row = $result->fetch_assoc();
