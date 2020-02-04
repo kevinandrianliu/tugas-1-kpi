@@ -50,7 +50,9 @@
 				$order_id = $_POST["fetch_order_id"];
 				mysqli_select_db($conn, "wbd_schema");
 				$query = "UPDATE transaction SET review = '$review', rating = '$rating' WHERE username='$uname' and order_id = '$order_id'";
-				if (!(mysqli_query($conn,$query))){
+				$stmt = $conn->prepare($query);
+				$stmt->bind_param('sisi',$review, $rating, $uname, $order_id);
+				if (!$stmt->execute()){
 					echo mysqli_error($conn);
 				}
 				mysqli_close($conn);
