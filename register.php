@@ -105,40 +105,60 @@
 			mysqli_select_db($conn,"wbd_schema");
 			
 			//validation involving searching in database
-			$sql = "SELECT username FROM user WHERE username = '$usernameregister'";
-			$selection_username = selector($conn, $sql);
+			$sql = "SELECT username FROM user WHERE username = ?";
+			$stmt = $conn->prepare($sql);
+			$stmt->bind_param('s',$usernameregister);
+			$stmt->execute();
+			$selection_username = selector($stmt);
 			if($selection_username == "true"){
 				$usernameerror = " *Username has been used";
 			}
-			$sql = "SELECT password FROM user WHERE password = '$passwordregister'";
-			$selection_password = selector($conn, $sql);
+			$sql = "SELECT password FROM user WHERE password = ?";
+			$stmt = $conn->prepare($sql);
+			$stmt->bind_param('s',$passwordregister);
+			$stmt->execute();
+			$selection_password = selector($stmt);
 			if($selection_password){
 				$passworderror = " *Password has been used";
 			}
-			$sql = "SELECT name FROM user WHERE name = '$nameregister'";
-			$selection_name = selector($conn, $sql);
+			$sql = "SELECT name FROM user WHERE name = ?";
+			$stmt = $conn->prepare($sql);
+			$stmt->bind_param('s',$nameregister);
+			$stmt->execute();
+			$selection_name = selector($stmt);
 			if($selection_name){
 				$nameerror = " *Name has been used";
 			}
-			$sql = "SELECT email FROM user WHERE email = '$emailregister'";
-			$selection_email = selector($conn, $sql);
+			$sql = "SELECT email FROM user WHERE email = ?";
+			$stmt = $conn->prepare($sql);
+			$stmt->bind_param('s',$emailregister);
+			$stmt->execute();
+			$selection_email = selector($stmt);
 			if($selection_email == "true"){
 				$emailerror = " *Email has been used";
 			}
-			$sql = "SELECT address FROM user WHERE address = '$addressregister'";
-			$selection_address = selector($conn, $sql);
+			$sql = "SELECT address FROM user WHERE address = ?";
+			$stmt = $conn->prepare($sql);
+			$stmt->bind_param('s',$addressregister);
+			$stmt->execute();
+			$selection_address = selector($stmt);
 			if($selection_address){
 				$addresserror = " *Address has been used";
 			}
-			$sql = "SELECT phone_num FROM user WHERE phone_num = '$phonenumberregister'";
-			$selection_phonenumber = selector($conn, $sql);
+			$sql = "SELECT phone_num FROM user WHERE phone_num = ?";
+			$stmt = $conn->prepare($sql);
+			$stmt->bind_param('s',$phonenumberregister);
+			$stmt->execute();
+			$selection_phonenumber = selector($stmt);
 			if($selection_phonenumber){
 				$phonenumbererror = " *Phone number has been used";
 			}
 			if($passworderror == "" and $nameerror == "" and $emailerror == "" and $addresserror == "" and $phonenumbererror == ""){
 				//inserting the register field values
-				$query = "INSERT INTO user (username,password,name,email,address,phone_num) VALUES (\"".$usernameregister."\",\"".$passwordregister."\",\"".$nameregister."\",\"".$emailregister."\",\"".$addressregister."\",\"".$phonenumberregister."\")";
-				if (mysqli_query($conn,$query)){
+				$sql = "INSERT INTO user (username,password,name,email,address,phone_num) VALUES (?,?,?,?,?,?)";
+				$stmt = $conn->prepare($sql);
+				$stmt->bind_param('ssssss',$usernameregister, $passwordregister, $nameregister, $emailregister, $addressregister, $phonenumberregister);
+				if ($stmt->execute()){
 					echo '<script language="javascript">';
 					echo 'alert("Your register is successful")';
 					echo '</script>';
@@ -149,9 +169,9 @@
 			else{}
 			mysqli_close($conn);	
 		}
-		function selector($conn, $sql){
+		function selector($stmt){
 			//finding whether an instance of field has been used before
-			$result = mysqli_query($conn,$sql);
+			$result = $stmt->get_result();
 			$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 			$count = mysqli_num_rows($result);
 			// If result matched $usernamelogin and $passwordlogin, table row must be 1 row

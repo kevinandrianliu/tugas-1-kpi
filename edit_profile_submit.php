@@ -40,7 +40,7 @@
 			mysqli_select_db($conn,"wbd_schema");
 
 			$query = "UPDATE user SET name=?,address=?,phone_num=?,display_pic=? WHERE username=?";
-			$filename = "./pp/".$file_name; # Must be checked
+			$filename = "./pp/".$file_name;
 			$stmt = $conn->prepare($query);
 			$stmt->bind_param('sssss',$name, $addr, $phone, $filename, $uname);
 		} else {
