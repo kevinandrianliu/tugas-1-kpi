@@ -55,8 +55,15 @@
 					$conn = mysqli_connect($dbserver,$dbuser,$dbpass);
 
 					mysqli_select_db($conn,"wbd_schema");
-					mysqli_query($conn,"DELETE FROM access_token WHERE username=\"$uname\"");
-					mysqli_query($conn,"INSERT INTO access_token (token_id,username,expiry_time) VALUES (\"$ac_token\",\"$uname\",'$ex_date_database')");
+					$sql1 = "DELETE FROM access_token WHERE username= ?";
+					$stmt1 = $conn->prepare($sql1);
+					$stmt1->bind_param('s',$uname);
+					$stmt1->execute();
+
+					$sql2 = "INSERT INTO access_token (token_id,username,expiry_time) VALUES (?,?,?)";
+					$stmt2 = $conn->prepare($sql2);
+					$stmt2->bind_param('sss',$ac_token, $uname, $ex_date_database);
+					$stmt2->execute();
 
 					mysqli_close($conn);
 					header('Location: searchbook.php');
