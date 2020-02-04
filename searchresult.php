@@ -79,8 +79,11 @@
 
 						$titlequer = "%" . $_GET["judul"] . "%";
 						
-						$query = "SELECT id, title, author, description, book_pic FROM book WHERE title LIKE '$titlequer'";
-						$result = $conn->query($query);
+						$query = "SELECT id, title, author, description, book_pic FROM book WHERE title LIKE ?";
+						$stmt = $conn->prepare($query);
+						$stmt->bind_param('s',$titlequer);
+						$stmt->execute();
+						$result = $stmt->get_result();
 
 						if ($result) {
 							echo "<h1>Search Result</h1>";
