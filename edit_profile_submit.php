@@ -38,20 +38,17 @@
 			move_uploaded_file($file_tmpname,$file_dir);
 
 			mysqli_select_db($conn,"wbd_schema");
-			$data = mysqli_query($conn,"SELECT display_pic FROM user WHERE username = \"".$uname."\"");
-			$data_1 = mysqli_fetch_assoc($data);
 
-			if ($data_1["display_pic"] !== "./icon/pp_default.jpg"){
-				unlink($old_pic);
-			}
-			mysqli_free_result($data);
-
-			$query = "UPDATE user SET name='$name',address='$addr',phone_num='$phone',display_pic='./pp/$file_name' WHERE username='$uname'";
+			$query = "UPDATE user SET name=?,address=?,phone_num=?,display_pic=? WHERE username=?";
+			$filename = "./pp/".$file_name; # Must be checked
+			$stmt = $conn->prepare($query);
+			$stmt->bind_param('sssss',$name, $addr, $phone, $filename, $uname);
 		} else {
-			$query = "UPDATE user SET name='$name',address='$addr',phone_num='$phone' WHERE username='$uname'";
+			$query = "UPDATE user SET name=?,address=?,phone_num=? WHERE username=?";
+			$stmt = $conn->prepare($query);
+			$stmt->bind_param('ssss',$name, $addr, $phone, $uname);
 		}
-
-		mysqli_query($conn,$query);
+		$stmt->execute();
 		mysqli_close($conn);
 
 		header("Location: profile.php");
