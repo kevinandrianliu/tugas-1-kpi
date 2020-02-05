@@ -15,8 +15,9 @@
 		$data_1 = mysqli_fetch_assoc($data);
 
 		if (($data_1["token_id"] !== $ac_token) || ($data_1["expiry_time"] < date('Y-m-d H:i:s',time()))){
-			setcookie("access_token","",0);
-			setcookie("uname","",0);
+			$params = session_get_cookie_params();
+			setcookie("access_token","",0, $params["path"], $params["domain"], TRUE, TRUE);
+			setcookie("uname","",0, $params["path"], $params["domain"], TRUE, TRUE);
 			
 			header("Location: login.php");
 		} else {
