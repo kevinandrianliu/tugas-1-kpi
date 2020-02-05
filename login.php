@@ -23,15 +23,24 @@
 			else{					
 				$passwordlogin = $_POST["passwordlogin"];
 			}
-			if($usernameerror == "" and $usernameerror == ""){
+			if($usernameerror == "" and $passworderror == ""){
 				// Create connection
 				$conn = mysqli_connect($dbserver,$dbuser,$dbpass);
 				if(mysqli_connect_error()) {
 					die('Could not connect: ' . mysqli_connect_error());
 				}
+				mysqli_select_db($conn,"wbd_schema");
+				$ip = get_client_ip();
+				$uagent = $_SERVER['HTTP_USER_AGENT'];
+				$data = mysqli_query($conn,"SELECT * FROM login_attempt WHERE ip=\"$ip\", uagent=\"$uagent\" AND uname=\"$usernamelogin\"");
+				if (empty(mysqli_fetch_assoc($data))){
+					mysqli_query($conn,"INSERT INTO login_attempt (ip, uagent, uname, total) VALUES (\"$ip\",\"$uagent\", \"$usernamelogin\", 1)");
+				}
+				$ac_token = md5(mt_rand());
+				$ex_timestamp_cookie = time() + (60*60);
+				setcookie("access_token",$ac_token,$ex_timestamp_cookie);
 				
 				//finding in database
-				mysqli_select_db($conn, "wbd_schema");
 				$sql = "SELECT username FROM user WHERE username = ? and password = ?";
 				$stmt = $conn->prepare($sql);
 				$stmt->bind_param('ss',$usernamelogin, $passwordlogin);
@@ -65,17 +74,46 @@
 					$stmt2 = $conn->prepare($sql2);
 					$stmt2->bind_param('sss',$ac_token, $uname, $ex_date_database);
 					$stmt2->execute();
+					mysqli_query($conn,"DELETE FROM login_attempt WHERE ip=$ip, uagent=$uagent AND uname=$usernamelogin");
 
 					mysqli_close($conn);
-					header('Location: searchbook.php');
+					#header('Location: searchbook.php');
 				}
 				else{
 					$usernameerror = " *Either username is invalid";
 					$passworderror = " or password is invalid";
-					mysqli_close($conn);
+					$data = mysqli_query($conn,"SELECT total FROM login_attempt WHERE ip=\"$ip\", uagent=\"$uagent\" AND uname=\"$usernamelogin\"");
+					$data_1 = mysqli_fetch_assoc($data);
+					if ($data_1["total"] > 3){
+						setcookie("access_token","",0);
+						mysqli_close($conn);
+					}
+					else{
+						mysqli_query($conn,"UPDATE login_attempt SET total = total + 1 WHERE ip=\"$ip\", uagent=\"$uagent\" AND uname=\"$usernamelogin\"");
+				
+					}
 				}
 			}
 			else{}
+		}
+
+		function get_client_ip() {
+			$ipaddress = '';
+			if (getenv('HTTP_CLIENT_IP'))
+				$ipaddress = getenv('HTTP_CLIENT_IP');
+			else if(getenv('HTTP_X_FORWARDED_FOR'))
+				$ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+			else if(getenv('HTTP_X_FORWARDED'))
+				$ipaddress = getenv('HTTP_X_FORWARDED');
+			else if(getenv('HTTP_FORWARDED_FOR'))
+				$ipaddress = getenv('HTTP_FORWARDED_FOR');
+			else if(getenv('HTTP_FORWARDED'))
+			   $ipaddress = getenv('HTTP_FORWARDED');
+			else if(getenv('REMOTE_ADDR'))
+				$ipaddress = getenv('REMOTE_ADDR');
+			else
+				$ipaddress = 'UNKNOWN';
+			return $ipaddress;
 		}
 	?>
 		<div>
