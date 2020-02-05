@@ -32,18 +32,24 @@
 		$phone = $_POST["phone"];
 
 		if ($_FILES["pic_path"]["name"] !== ""){
-			$file_tmpname = $_FILES["pic_path"]["tmp_name"];
-			$file_name = $_FILES["pic_path"]["name"];
-			$file_dir = getcwd()."\\pp\\".$file_name;
+			$fileInfo = wp_check_filetype(basename($_FILES["pic_path"]["name"]));
+			if (!empty($fileInfo['ext'])) {
+				$file_tmpname = $_FILES["pic_path"]["tmp_name"];
+				$file_name = $_FILES["pic_path"]["name"];
+				$file_dir = getcwd()."\\pp\\".$file_name;
 
-			move_uploaded_file($file_tmpname,$file_dir);
+				move_uploaded_file($file_tmpname,$file_dir);
 
-			mysqli_select_db($conn,"wbd_schema");
+				mysqli_select_db($conn,"wbd_schema");
 
-			$query = "UPDATE user SET name=?,address=?,phone_num=?,display_pic=? WHERE username=?";
-			$filename = "./pp/".$file_name;
-			$stmt = $conn->prepare($query);
-			$stmt->bind_param('sssss',$name, $addr, $phone, $filename, $uname);
+				$query = "UPDATE user SET name=?,address=?,phone_num=?,display_pic=? WHERE username=?";
+				$filename = "./pp/".$file_name;
+				$stmt = $conn->prepare($query);
+				$stmt->bind_param('sssss',$name, $addr, $phone, $filename, $uname);
+			} else {
+				alert("Invalid file");
+				header("Location: edit_profile.php");
+			}
 		} else {
 			$query = "UPDATE user SET name=?,address=?,phone_num=? WHERE username=?";
 			$stmt = $conn->prepare($query);

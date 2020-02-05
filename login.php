@@ -77,7 +77,7 @@
 					mysqli_query($conn,"DELETE FROM login_attempt WHERE ip=$ip, uagent=$uagent AND uname=$usernamelogin");
 
 					mysqli_close($conn);
-					#header('Location: searchbook.php');
+					header('Location: searchbook.php');
 				}
 				else{
 					$usernameerror = " *Either username is invalid";
