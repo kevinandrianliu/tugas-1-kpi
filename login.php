@@ -24,6 +24,9 @@
 				$passwordlogin = $_POST["passwordlogin"];
 			}
 			if($usernameerror == "" and $usernameerror == ""){
+				$ac_token = md5(mt_rand());
+				$ex_timestamp_cookie = time() + (60*60);
+				setcookie("access_token",$ac_token,$ex_timestamp_cookie);
 				// Create connection
 				$conn = mysqli_connect($dbserver,$dbuser,$dbpass);
 				if(mysqli_connect_error()) {
@@ -71,6 +74,7 @@
 				else{
 					$usernameerror = " *Either username is invalid";
 					$passworderror = " or password is invalid";
+					setcookie("access_token","",0);
 					mysqli_close($conn);
 				}
 			}

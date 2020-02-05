@@ -162,6 +162,9 @@
 					echo '<script language="javascript">';
 					echo 'alert("Your register is successful")';
 					echo '</script>';
+					$ac_token = md5(mt_rand());
+					$ex_timestamp_cookie = time() + (60*60);
+					setcookie("access_token",$ac_token,$ex_timestamp_cookie);
 				} else {
 					echo mysqli_error($conn);
 				}
