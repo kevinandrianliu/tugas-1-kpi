@@ -47,7 +47,8 @@
 					$ex_timestamp_database = time() + (60*60*24);
 					$ex_timestamp_cookie = $ex_timestamp_database + (10*365*24*60*60);
 					$ex_date_database = date('Y-m-d H:i:s', $ex_timestamp_database);
-					setcookie("access_token",$ac_token,$ex_timestamp_cookie);
+					$params = session_get_cookie_params();
+					setcookie("access_token",$ac_token,$ex_timestamp_cookie, $params["path"], $params["domain"], TRUE, TRUE);
 
 					$dbserver = "127.0.0.1";
 					$dbuser = "root";
